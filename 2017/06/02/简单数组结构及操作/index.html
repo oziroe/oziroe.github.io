@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单数组结构posarr及操作 | This is oziroe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="其实这是一种”假“的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组 1typedef int *posarr_p; 一切操作，都围绕着这个如假包换的数组展开。">
+<meta name="keywords" content="4b,C,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单数组结构posarr及操作">
+<meta property="og:url" content="https://oziroe.github.io/2017/06/02/简单数组结构及操作/index.html">
+<meta property="og:site_name" content="This is oziroe">
+<meta property="og:description" content="其实这是一种”假“的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组 1typedef int *posarr_p; 一切操作，都围绕着这个如假包换的数组展开。">
+<meta property="og:image" content="https://oziroe.github.io/images/pasted-0.png">
+<meta property="og:updated_time" content="2017-06-02T16:23:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单数组结构posarr及操作">
+<meta name="twitter:description" content="其实这是一种”假“的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组 1typedef int *posarr_p; 一切操作，都围绕着这个如假包换的数组展开。">
+<meta name="twitter:image" content="https://oziroe.github.io/images/pasted-0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="This is oziroe" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">This is oziroe</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Please call me cowsay.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oziroe.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-简单数组结构及操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/02/简单数组结构及操作/" class="article-date">
+  <time datetime="2017-06-02T15:04:00.000Z" itemprop="datePublished">2017-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单数组结构posarr及操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>其实这是一种”假“的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *posarr_p;</div></pre></td></tr></table></figure>
+<p>一切操作，都围绕着这个如假包换的数组展开。</p>
+<p><img src="/images/pasted-0.png" alt="就是有这种操作"></p>
+<a id="more"></a>
+<p>使用数组的第一个元素储存长度容易导致很多不良后果——比如遍历数组时，索引和元素的“位置”的偏差。因此我的解决方案是：没有使用的元素填-1，最后一个元素填-2，并且不使用它——不然就没法确定数组的结尾了。</p>
+<p>那么如果数据是-1或者-2怎么办？好办，要求数据不能小于0就行了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">posarr_initia</span><span class="params">(posarr_p memo, <span class="keyword">const</span> <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</div><div class="line">        memo[i] = <span class="number">-1</span>;</div><div class="line">    memo[size] = <span class="number">-2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>宏替换函数不推荐作为内联函数使用了，不过用来完成一些语言能力之外的事情还是可以的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR(name, size) int name[size + 1]; posarr_initia(name, size)</span></div></pre></td></tr></table></figure>
+<p>删除一个元素时用后面的元素填充，而添加元素时只要简单的在末尾找到一个空位就行了。目前的删除动作把每一个元素都向前移了一位，如果不在乎顺序的话可以拿最后一个元素填补空位，可以进一步提高效率：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">posarr_delete</span><span class="params">(posarr_p <span class="built_in">array</span>, <span class="keyword">const</span> <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>[pos] &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i = pos; <span class="built_in">array</span>[i + <span class="number">1</span>] &gt;= <span class="number">0</span>; i++)</div><div class="line">        <span class="built_in">array</span>[i] = <span class="built_in">array</span>[i + <span class="number">1</span>];</div><div class="line">    <span class="built_in">array</span>[i] = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">posarr_append</span><span class="params">(posarr_p <span class="built_in">array</span>, <span class="keyword">const</span> <span class="keyword">int</span> data)</span> </span>&#123;</div><div class="line">    assert(data &gt;= <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; <span class="built_in">array</span>[i] != <span class="number">-2</span>; i++)</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">-1</span>) &#123;</div><div class="line">            <span class="built_in">array</span>[i] = data;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还有一个喜闻乐见的toString工具函数。由于数据结构的限制，没有找到在一趟之内且不借助buffer的方法来先输出长度再输出各元素，所以只好遍历两趟。好在对于这种小数组，对于它的使用场景一般不会超过16个元素的长度，所以效率上不会有显著瓶颈。代码不贴了，效果大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">posarr#10[0, 1, 2, 3, 4, 5, 6, 7, ...]</div></pre></td></tr></table></figure>
+<p>只显示前八个元素，这样就算放在一行log当中也不会太尴尬。</p>
+<p>最后，一个用来遍历数组的工具宏替换函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    for (int index = 0, item = array[index]; item &gt;= 0; \</div><div class="line">        index++, item = array[index])</div></pre></td></tr></table></figure>
+<p>就是这些。下一步会添加刚刚想到的删除函数，并且把这个数据结构用来作邻接表组成的图数据结构的基石。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj3fzdon800014don0d0qdk3l" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/4b/" style="font-size: 10px;">4b</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/02/简单数组结构及操作/">简单数组结构posarr及操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 oziroe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
