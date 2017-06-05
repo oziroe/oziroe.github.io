@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单的可暂停单工作线程模型 | This is oziroe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
+<meta name="keywords" content="Python,Bitabase,线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的可暂停单工作线程模型">
+<meta property="og:url" content="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/index.html">
+<meta property="og:site_name" content="This is oziroe">
+<meta property="og:description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
+<meta property="og:image" content="https://oziroe.github.io/images/我好菜啊.jpg">
+<meta property="og:image" content="https://oziroe.github.io/images/并发测试图-1.png">
+<meta property="og:image" content="https://oziroe.github.io/images/并发测试图-2.png">
+<meta property="og:image" content="https://oziroe.github.io/images/我的心好痛.png">
+<meta property="og:image" content="https://oziroe.github.io/images/WTF.png">
+<meta property="og:image" content="https://oziroe.github.io/images/我的心好痛.png">
+<meta property="og:image" content="https://oziroe.github.io/images/并发测试图-3.png">
+<meta property="og:image" content="https://oziroe.github.io/images/并发测试图-4.png">
+<meta property="og:image" content="https://oziroe.github.io/images/金正恩鼓掌.jpg">
+<meta property="og:updated_time" content="2017-06-05T13:16:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的可暂停单工作线程模型">
+<meta name="twitter:description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
+<meta name="twitter:image" content="https://oziroe.github.io/images/我好菜啊.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="This is oziroe" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">This is oziroe</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Please call me cowsay.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oziroe.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-简单的可暂停单工作线程模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/05/简单的可暂停单工作线程模型/" class="article-date">
+  <time datetime="2017-06-05T11:50:05.000Z" itemprop="datePublished">2017-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单的可暂停单工作线程模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。</p>
+<p><img src="/images/我好菜啊.jpg" alt="我好菜啊"></p>
+<p>这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能<strong>把部分成果拿出来</strong>。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了</p>
+<p>使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。</p>
+<a id="more"></a>
+<p>之前在写的时候通过查询大量<a href="https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python" target="_blank" rel="external">Stackoverflow的问题</a>以及<del>官方资料</del>（这玩意好像没有官方文档），成功地绕了一个弯：为单个的工作线程开了一个<code>multiprocessing.pool.ThreadPool</code>，据说这样的好处是可以方便的拿到返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    pool = ThreadPool(processes=<span class="number">1</span>)</div><div class="line">    async_result = pool.apply_async(real_worker)</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="string">'pool'</span>: pool,</div><div class="line">        <span class="string">'result'</span>: async_result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><em>注意：写的时候有点欠考虑，这样引用代码也许不太便于理解。可以参考<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这次修改的commit</a>，谢谢配合。</em></p>
+<p>然后在工作结束的时候结束进程并拿返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_for_worker_finish</span><span class="params">(worker)</span>:</span></div><div class="line">    <span class="comment"># ... here is some code tells worker there's no more work.</span></div><div class="line">    result = worker[<span class="string">'result'</span>].get()</div><div class="line">    <span class="comment"># ... some code update worker's state</span></div><div class="line">    <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
+<p>但是这个返回值并不是worker真正的产品（虽然这是<code>ThreadPool</code>的正确用法），因为这个返回值只有等全部的工作都做完了才能拿到，中途暂停（等会再说我是怎么实现暂停的）的时候是拿不到的。所以又开了两个<code>multiprocessing.Queue</code>，分别用来往worker里传任务和从worker往外传产品：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(worker_method)</span>:</span></div><div class="line">    tasks_queue = Queue()</div><div class="line">    products_queue = Queue()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            task = tasks_queue.get()</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            product = worker_method(task)</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            products_queue.put(product)</div><div class="line">    </div><div class="line">    <span class="comment"># ...</span></div><div class="line">    worker = &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'in_queue'</span>: tasks_queue,</div><div class="line">        <span class="string">'out_queue'</span>: products_queue,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>希望你还能把这个函数和上面那个合在一起。这样一来，真正传进来的<code>worker_method</code>所要实现的逻辑就很简单了：接收一个参数作为任务，返回产品。它还可以任性地抛异常——<code>real_worker</code>里的主循环当中省略的大部分代码就是为了处理这个的。这样一来随时增派新任务和获取已经完成部分的产品就变得非常容易了：只要传<code>worker</code>作为参数，取得对应的队列调用库的接口即可。具体可以参考官方文档。</p>
+<p>在<code>real_worker</code>的主循环中做的另一件事就是实现暂停功能，这是通过一对扭在一起的<code>multiprocessing.Event</code>实现的。具体如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    working = Event()</div><div class="line">    working.set()</div><div class="line">    pausing = Event()</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            pausing.set()</div><div class="line">            working.wait()</div><div class="line">            pausing.clear()</div><div class="line">            </div><div class="line">            <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'work_event'</span>: working,</div><div class="line">        <span class="string">'pause_event'</span>: pausing,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pause_worker</span><span class="params">(worker: dict)</span> -&gt; bool:</span></div><div class="line">	<span class="comment"># ...</span></div><div class="line">    worker[<span class="string">'work_event'</span>].clear()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="comment"># Wait for worker finishing current task.</span></div><div class="line">    worker[<span class="string">'pause_event'</span>].wait()</div><div class="line">    <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>之所以还需要一个<code>pause_event</code>主要是因为一个BUG：最后一个任务可能会在worker被暂停以后被推进产品队列当中去。有了这个事件，<code>pause_worker</code>会一直等到最后一个产品被做完以后才返回，就不会出现莫名丢产品的情况了。</p>
+<p>这里省略的代码主要是用来确定当前worker状态的两个布尔值：<code>is_working</code>和<code>is_dead</code>。这两个值不仅可以用来作安全检查，还可以对外提供一个友善的接口。</p>
+<hr>
+<p>我跟你讲，以上是背景资料……整整写了1024个字……我也深表歉意。希望你能对接下来的正文依然充满了兴趣。</p>
+<p>今天原本是要在上述的基础接口之上建立一层面向对象的封装，并写一篇类似于《半藏与守望先锋不得不说的故事》之类的文章【误。但是在我点了单元测试之后（单元测试爽过吸大麻），有一个API接口的测试挂了。我当即大吃一惊，难道这么几天哔哩哔哩还改了接口？仔细一看更吃惊了，只见这是用来读取多P视频各分P名字的接口，然而前两P的名字顺序反了！这是什么情况？于是我来到B站上一看：</p>
+<p><del>截图</del></p>
+<p>是的你没有看错，就是大名鼎鼎的保加利亚巫妖王……前两P的名字居然交换了次序！这怎么可能呢？由于我在几个星期前确确实实跑了几十遍单元测试通过了，所以才如此的确定。反正我是百思不得其解并兴奋地发了一条动态：</p>
+<blockquote>
+<p>由于我的爬虫单元测试fail了，我可能是世界上第一个发现av170001前两P名字对调了的人。</p>
+</blockquote>
+<p>好吧我要讲的不是这个。我要说的是，我手贱点了一下“Concurrency Diagram”的按钮以后，看到了一幅恐怖的景象：</p>
+<p><img src="/images/并发测试图-1.png" alt="并发测试图#1"></p>
+<p>怎么有线程没有停止？经过反复测试，我发现当我把单线程的线程池里的线程数改成4的时候，没有停止的线程数变成了四倍：</p>
+<p><img src="/images/并发测试图-2.png" alt="并发测试图#2"></p>
+<p><img src="/images/我的心好痛.png" alt="我的心好痛"></p>
+<p>我明明在等待停止worker的函数里调用了<code>wait</code>，甚至还调用了<code>close</code>啊，为什么会这样呢？然后我又发现，所有没有停止的线程全都有一个同名且正常停止的线程。就像前两张图里画的那样。</p>
+<p><img src="/images/WTF.png" alt="What the f*ck"></p>
+<p>经过一圈Google无果之后（这个情况复杂到我不知道如何描述），我尝试着在单元测试里把各个节点的活跃线程数打印出来，然后发现，它每次运行的结果不一样……</p>
+<p><img src="/images/我的心好痛.png" alt="我的心好痛*2"></p>
+<p>这我又能怎么办呢？我只好决定把线程池改成一个单独的线程。还记得我为什么要用线程池吗？“可以方便地拿到返回值”。于是我尝试在worker里加一个字段用来存返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = <span class="keyword">None</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里<code>result</code>的结构是按照<code>ok, exception</code>的约定。然后我就发现，对<code>result</code>的修改好像不起作用……冥冥中的直觉让我把它改成了这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = &#123;<span class="string">'value'</span>: <span class="keyword">None</span>&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result[<span class="string">'value'</span>] = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>是的你没有猜错，好了。也许你会说“稍有常识……”，没错我就是没有常识。</p>
+<hr>
+<p>下一个坑还要深一点点。在我把线程池改成线程以后，图表变成了这样：</p>
+<p><img src="/images/并发测试图-3.png" alt="并发测试图#3"></p>
+<p>看起来好多了，只不过两条队列并没有正常地终止，每一次都要等到下一个测试用例之后才结束，最后一个测试甚至延伸了好久。经过一番操作我把它们替换成了<code>multiproccessing.Pipe</code>，也就是一对<code>Connection</code>。如果你有经验应该已经猜到了，我在worker结束以后取结果的代码抛了<code>EOFError</code>。原因是当worker线程结束的时候它所对应的<code>Connection</code>被回收掉了。于是我只好把worker改成了这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">worker = &#123;</div><div class="line">    <span class="string">'worker'</span>: worker,</div><div class="line">    <span class="string">'result'</span>: result,</div><div class="line">    <span class="string">'connect'</span>: host_conn,</div><div class="line">    <span class="string">'work_event'</span>: working,</div><div class="line">    <span class="string">'pause_event'</span>: pausing,</div><div class="line">    <span class="string">'is_working'</span>: <span class="keyword">True</span>,</div><div class="line">    <span class="string">'is_dead'</span>: <span class="keyword">False</span>,</div><div class="line">    <span class="comment"># this prevents auto-close</span></div><div class="line">    <span class="string">'_worker_connection'</span>: worker_conn,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>顺便加上了前面提到过的所有东西。于是，我的努力最终达到了效果：</p>
+<p><img src="/images/并发测试图-4.png" alt="并发测试图#4"></p>
+<p>没有多余线程啦！</p>
+<p><img src="/images/金正恩鼓掌.jpg" alt="鼓掌"></p>
+<p>最后，感谢每一个看完这篇不知所云文章的人。<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这里</a>是这次commit的地址，你可以看一看完整版的代码。下一篇文章应该可以写我是如何构建上层抽象的了……大概吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj3k2rv5200003fonsxw9buzb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/04/基于C-11-STL的邻接表图实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于C++11/STL的邻接表图实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 10px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/05/简单的可暂停单工作线程模型/">简单的可暂停单工作线程模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/04/基于C-11-STL的邻接表图实现/">基于C++11/STL的邻接表图实现</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/02/简单数组结构及操作/">简单数组结构posarr及操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 oziroe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
