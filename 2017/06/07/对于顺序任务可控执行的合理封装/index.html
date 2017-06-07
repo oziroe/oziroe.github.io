@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>对于顺序任务可控执行的合理封装 | This is oziroe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对于Bitabase这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：Bitabase部分承担真正的爬取工作部分，web（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Win">
+<meta name="keywords" content="Python,Bitabase,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对于顺序任务可控执行的合理封装">
+<meta property="og:url" content="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/index.html">
+<meta property="og:site_name" content="This is oziroe">
+<meta property="og:description" content="对于Bitabase这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：Bitabase部分承担真正的爬取工作部分，web（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Win">
+<meta property="og:image" content="https://oziroe.github.io/images/牛逼坏了叉会腰.jpg">
+<meta property="og:updated_time" content="2017-06-07T07:48:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对于顺序任务可控执行的合理封装">
+<meta name="twitter:description" content="对于Bitabase这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：Bitabase部分承担真正的爬取工作部分，web（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Win">
+<meta name="twitter:image" content="https://oziroe.github.io/images/牛逼坏了叉会腰.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="This is oziroe" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">This is oziroe</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Please call me cowsay.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oziroe.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-对于顺序任务可控执行的合理封装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/对于顺序任务可控执行的合理封装/" class="article-date">
+  <time datetime="2017-06-07T06:07:16.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对于顺序任务可控执行的合理封装
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于<a href="https://github.com/oziroe/Bitabase" target="_blank" rel="external">Bitabase</a>这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：<code>Bitabase</code>部分承担真正的爬取工作部分，<code>web</code>（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。</p>
+<p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
+<a id="more"></a>
+<p>根据<a href="/2017/06/05/简单的可暂停单工作线程模型/" title="上一篇文章中">上一篇文章中</a>所描述的，<code>interface</code>为我提供了一个简单的单工作线程，其实还有一个用来提起网络请求的接口，长成这个样子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line">                text: bool = True, **kwargs) -&gt; (bool, dict or str or bytes):</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>嗯，看来高亮不能正确处理换行，编辑器也不能正确处理Tab，真是一个充满恶意的世界呀。</p>
+<p>有了以上两种东西以后，问题就变成了如何把它们组装起来。经过考虑我决定把“请求”作为一个任务和产品。这个概念过于抽象，所以我用类比的方式给接口命名，以及写这篇博客。因此，下面的提示非常重要：</p>
+<p><strong>注意：本文作者默认读者对于<a href="http://ow.blizzard.cn/home" target="_blank" rel="external">《守望先锋》</a>有基本的了解（世界观、英雄等），为了不影响观看本文的体验，请不满足此假设的读者点击前面的链接提高自身姿势水平，谢谢配合。</strong></p>
+<p>好了，这回我们从顶至下地进行游览。一下代码摘自单元测试，可以算是最简单的应用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_hanzo</span><span class="params">(self)</span>:</span></div><div class="line">    after = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(hanzo)</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> after</div><div class="line">        after = hanzo</div><div class="line"></div><div class="line">    baidu_hanzo = Hanzo(<span class="string">'https://baidu.com'</span>, callback)</div><div class="line">    overwatch = Overwatch()</div><div class="line">    overwatch.conscript([baidu_hanzo])</div><div class="line">    overwatch.dismiss()</div><div class="line">    self.assertIsInstance(after, Hanzo)</div><div class="line">    self.assertIsInstance(after.data, str)</div><div class="line">    self.assertEqual(after.data[:<span class="number">15</span>], <span class="string">'&lt;!DOCTYPE html&gt;'</span>)</div></pre></td></tr></table></figure>
+<p>可以看到两个基础的类：半藏<code>Hanzo</code>和守望先锋<code>Overwatch</code>。这里面的守望先锋特制那支队伍（“We are overwatch!”），而非游戏本身。每个半藏承载着一个请求，调用一个半藏实例的<code>fire</code>方法（射箭）就会把这个请求发送出去——下层当时是调用了<code>get_request</code>方法。每个半藏还会接受一个回调函数作为构造参数，这个回调函数接受一个半藏实例作为参数，而这个实例就是射完了箭的半藏。在<code>fire</code>当中半藏会用请求返回的数据更新自身，从而供回调函数使用。半藏不是老说“为你效命”吗？这个回调函数就叫<code>servicing</code>，没毛病。</p>
+<p><code>Overwatch</code>本质上就是把<code>worker</code>的接口统一到了一个类里，但是区别在于守望先锋的团队对于它的队员有要求：目前来说只能是半藏。而<code>worker</code>并不在意你把什么东西当做任务推进去了——它只是原封不动地把任务送进<code>worker_method</code>当中去了而已。守望先锋的<code>conscript</code>（应征入伍）接口接受一列半藏作为参数，把它们加入到守望先锋的队伍当中去，并按照顺序调用每一个半藏的<code>fire</code>。而<code>dismiss</code>（解散）则对应着<code>wait_for_worker_finish</code>，阻塞等待半藏们各自射完箭，并将自身的状态更新为<code>dismissed</code>，不再接受更多半藏的入伍请求。<code>retire</code>（退役）接口用于将已经射完箭的半藏送回它所效命的主子那里去，具体的就是调用每一个产品队列里的半藏携带的<code>servicing</code>回调函数。你可以看到上面的例子当中没有出现这个接口，因为在解散守望先锋的时候这个接口会自动被调用——挺合理的。另外这个接口也会在运行过程中周期性的被调用到。</p>
+<p>先来看一段具体的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max_team_member: int = <span class="number">0</span>, max_retry: int = <span class="number">3</span>)</span>:</span></div><div class="line">    self.worker = create_worker(self._duty)</div><div class="line">    self.member_count = <span class="number">0</span></div><div class="line">    self.total_hanzo_count = <span class="number">0</span></div><div class="line">    self.max_team_member = max_team_member <span class="keyword">if</span> max_team_member &gt; <span class="number">0</span> <span class="keyword">else</span> \</div><div class="line">        Overwatch.max_team_member</div><div class="line">    self.max_retry = max_retry</div><div class="line">    self.hanzoes = &#123;&#125;</div><div class="line">    self.retry_count = &#123;&#125;</div><div class="line">    self.dismissed = <span class="keyword">False</span></div><div class="line">    self.result = <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<p>这是守望先锋的构造函数。可以看到用来当做<code>worker</code>的回调函数是<code>self._duty</code>，接下来会详细研究它，而其他的一些量中，头三个比较重要。一个守望先锋队伍是有人数上限的，不能无限地让射完了箭的半藏堆在队伍里，这样不利于程序的健壮性。每当半藏的人数达到上限的时候，就要先让完成了工作的半藏们退休，然后再接着射箭：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_duty</span><span class="params">(self, hanzo_id: int)</span> -&gt; int:</span></div><div class="line">    <span class="keyword">if</span> self.member_count == self.max_team_member:</div><div class="line">        self.retire()</div><div class="line">    self.total_hanzo_count += <span class="number">1</span></div><div class="line">    self.hanzoes[hanzo_id].fire()</div><div class="line">    self.member_count += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> hanzo_id</div></pre></td></tr></table></figure>
+<p>上述逻辑在此表达的比较清楚。这里你可能会有疑问了，说好的把半藏作为任务呢？怎么是传的ID，而把半藏本人给扣在队伍里了？这里就要涉及到实现过程中遇到的第一个坑了。</p>
+<p>如前一篇文章中所记述，worker与主线程之间的通信（交换任务和产品）是用过<code>Pipe</code>来实现的。而<code>Pipe</code>在传输对象前要先对其进行序列化。我的理解是为了防止已经进入管道的对象被别的线程修改，造成读取时与原始的状态不一致。而序列化是通过调用<code>pickle</code>来实现的。而<code>pickle</code>……在一篇Stack Overflow的回答当中直接被用了“broken”来形容，我觉得不算夸张。由于半藏实例要包含一个回调函数，因此无法被序列化。经过若干企图“绕过”的尝试失败以后，我只好采取如上的迂回办法。由此对应的入伍方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">conscript</span><span class="params">(self, hanzo_list: Iterable[Hanzo])</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    self.hanzoes.update(&#123;id(hanzo): hanzo <span class="keyword">for</span> hanzo <span class="keyword">in</span> hanzo_list&#125;)</div><div class="line">    append_tasks(self.worker, map(id, hanzo_list))</div></pre></td></tr></table></figure>
+<p>拿<code>id</code>的返回值作键，应该是高枕无忧了吧。</p>
+<hr>
+<p>先给出退役接口的实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">retire</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    retry_list = []</div><div class="line">    <span class="keyword">for</span> hanzo_id <span class="keyword">in</span> get_products(self.worker):</div><div class="line">        <span class="keyword">if</span> hanzo_id <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        hanzo = self.hanzoes[hanzo_id]</div><div class="line">        <span class="keyword">if</span> hanzo.ok:</div><div class="line">            hanzo.refine()</div><div class="line">        <span class="keyword">elif</span> self.dismissed:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Log here.</span></div><div class="line">            <span class="keyword">pass</span></div><div class="line">        <span class="keyword">elif</span> self.retry_count.get(hanzo, <span class="number">-1</span>) == self.max_retry:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Log here.</span></div><div class="line">            <span class="keyword">pass</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.retry_count[hanzo] = <span class="number">1</span> <span class="keyword">if</span> hanzo <span class="keyword">not</span> <span class="keyword">in</span> self.retry_count \</div><div class="line">                <span class="keyword">else</span> self.retry_count[hanzo] + <span class="number">1</span></div><div class="line">            hanzo.ok = hanzo.exception = <span class="keyword">None</span></div><div class="line">            retry_list.append(hanzo)</div><div class="line">            <span class="keyword">continue</span></div><div class="line">        hanzo.servicing(hanzo)</div><div class="line">        <span class="keyword">del</span> self.hanzoes[hanzo_id]</div><div class="line">    self.member_count = <span class="number">0</span></div><div class="line">    self.conscript(retry_list)</div></pre></td></tr></table></figure>
+<p>是不是比想象中的要复杂？这是因为我写了另一个功能：出错重试。拿到半藏实例之后的大条件分支里一共有一下四种情形：</p>
+<ul>
+<li>如果箭射得没问题，在<code>fire</code>当中<code>ok</code>会被设置为<code>True</code>。此时执行<code>refine</code>（精炼）函数，将拿到的纯文本/json对象数据转化成更特异化的形式，以方便主子处理。在<code>Hanzo</code>当中<code>refine</code>就是一个空方法，在子类当中会被覆写。</li>
+<li>如果箭没射好但队伍已经解散了，那么也就没有重试的机会了（下层的<code>worker</code>已经关闭，不能接收更多的任务了），所以不重试。</li>
+<li>如果已经达到了最大重试上限，那也不重试。</li>
+<li>否则，将两个标志着错误的状态（<code>ok == False</code>和<code>exception != None</code>）清除掉，这样就把半藏洗干净了，可以放回队列里继续用。由于条件分支之后的代码会把半藏送回老家，而进入这条分支的半藏还是个……傻半藏，所以跳过。</li>
+</ul>
+<p>最后把队伍人数清零（注意人数是指射完箭的人数哦），把洗完了傻半藏重新推回服役列表当中去。退役仪式圆满结束。</p>
+<p>这里可以看到，如果不是队伍的最后几名半藏，那么什么时候被送回主人那里是不确定的。这个模型和思想有点类似于node的异步的感觉，算是玩了几年WEB积累的一点直觉吧。</p>
+<hr>
+<p>最后就是退役接口的实现了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dismiss</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    self.dismissed = <span class="keyword">True</span></div><div class="line">    self.result = wait_for_worker_finish(self.worker)</div><div class="line">    <span class="comment"># The last group of hanzoes have not been retired.</span></div><div class="line">    self.retire()</div></pre></td></tr></table></figure>
+<p>这里一定要注意更新<code>dismissed</code>必须放在最前面，因为<code>wait_for_worker_finish</code>一上来就会给任务队列推一个<code>None</code>代码没有新任务了，如果之后再通过任何途径调用了<code>retire</code>时又推了新任务，那么这个任务就不可能被执行到。事实上应该是完全推不进去才对……感觉代码又一次不健壮了……</p>
+<hr>
+<p>最后分享一个有可能是史上最简陋的mock：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FakeSession</span><span class="params">(Session)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, url, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">raise</span> RequestException(<span class="string">'This is a test exception.'</span>)</div></pre></td></tr></table></figure>
+<p>我的每一层的网络接口都可以接受一个<code>requests.Session</code>对象来代替直接从<code>requests.get</code>或者类似接口发送请求。最初这么做只是因为这样效率高，没想到有奇效……只要把这个类的实例作为session传进去就可以模拟断网了……于是我的单元测试覆盖率终于达到了100%。</p>
+<p><img src="/images/牛逼坏了叉会腰.jpg" alt="可把我牛逼坏了"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/" data-id="cj3mle3xk00003lonlu5553x3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/05/简单的可暂停单工作线程模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">简单的可暂停单工作线程模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 20px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/05/简单的可暂停单工作线程模型/">简单的可暂停单工作线程模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/04/基于C-11-STL的邻接表图实现/">基于C++11/STL的邻接表图实现</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/02/简单数组结构及操作/">简单数组结构posarr及操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 oziroe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

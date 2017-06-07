@@ -65,6 +65,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-对于顺序任务可控执行的合理封装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/对于顺序任务可控执行的合理封装/" class="article-date">
+  <time datetime="2017-06-07T06:07:16.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于<a href="https://github.com/oziroe/Bitabase" target="_blank" rel="external">Bitabase</a>这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：<code>Bitabase</code>部分承担真正的爬取工作部分，<code>web</code>（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。</p>
+<p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/07/对于顺序任务可控执行的合理封装/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/" data-id="cj3mle3xk00003lonlu5553x3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-简单的可暂停单工作线程模型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/05/简单的可暂停单工作线程模型/" class="article-date">
@@ -99,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj3k2rv5200003fonsxw9buzb" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj3mle3y500023lon1mwysq6o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
@@ -143,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/" data-id="cj3k2rv5900023fon0rpq1gw7" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/" data-id="cj3mle3yb00043lonkzmn1xm9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STL/">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
@@ -189,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj3k2rv5600013fona4xzionp" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj3mle3y400013loncev7mrnx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
@@ -213,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -223,7 +267,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 10px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 20px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -243,6 +287,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
+          </li>
         
           <li>
             <a href="/2017/06/05/简单的可暂停单工作线程模型/">简单的可暂停单工作线程模型</a>
