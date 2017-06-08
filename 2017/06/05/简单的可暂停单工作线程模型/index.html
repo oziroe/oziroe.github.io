@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>简单的可暂停单工作线程模型 | This is oziroe</title>
+  <title>简单的可暂停单工作线程模型 | This is oziroe.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
 <meta name="keywords" content="Python,Bitabase,线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的可暂停单工作线程模型">
 <meta property="og:url" content="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/index.html">
-<meta property="og:site_name" content="This is oziroe">
+<meta property="og:site_name" content="This is oziroe.">
 <meta property="og:description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
 <meta property="og:image" content="https://oziroe.github.io/images/我好菜啊.jpg">
 <meta property="og:image" content="https://oziroe.github.io/images/并发测试图-1.png">
@@ -27,7 +27,7 @@
 <meta name="twitter:description" content="写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。  这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状">
 <meta name="twitter:image" content="https://oziroe.github.io/images/我好菜啊.jpg">
   
-    <link rel="alternate" href="/atom.xml" title="This is oziroe" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="This is oziroe." type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -48,7 +48,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">This is oziroe</a>
+        <a href="/" id="logo">This is oziroe.</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -153,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj3mle3y500023lon1mwysq6o" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj3okgg780005sqonk6acgg2b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
@@ -189,23 +189,10 @@
           <aside id="sidebar">
   
     
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/4b/">4b</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 20px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 20px;">Bitabase</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -214,7 +201,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -225,6 +212,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/08/博客改版，格式微调实记/">博客改版，格式微调实记</a>
+          </li>
         
           <li>
             <a href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
@@ -271,9 +262,6 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>

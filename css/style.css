@@ -117,6 +117,47 @@ button::-moz-focus-inner {
   src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
   src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
 }
+/*******************************************************************************
+ * Copied from typora.
+ */
+@include-when-export url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/**
+* css forked from https://github.com/GitbookIO/gitbook
+* www.gitbook.com
+* Apache License
+* https://github.com/GitbookIO/gitbook/blob/master/LICENSE
+**/
+
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: normal;
+   src: local('Open Sans Regular'),url('./fonts/github/400.woff') format('woff')
+}
+
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-weight: normal;
+   src: local('Open Sans Italic'),url('./fonts/github/400i.woff') format('woff')
+}
+
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: bold;
+   src: local('Open Sans Bold'),url('./fonts/github/700.woff') format('woff')
+}
+
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-weight: bold;
+   src: local('Open Sans Bold Italic'),url('./fonts/github/700i.woff') format('woff')
+}
+/******************************************************************************/
+
 html,
 body,
 #container {
@@ -124,7 +165,7 @@ body,
 }
 body {
   background: #eee;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -482,7 +523,7 @@ body {
   background: none;
   color: #555;
   width: 100%;
-  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 13px "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   outline: none;
 }
 .search-form-input::-webkit-search-results-decoration,
@@ -631,7 +672,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -836,7 +877,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -1195,7 +1236,7 @@ a.article-title:hover {
 .article-entry .gist .gist-file .gist-meta {
   background: #2d2d2d;
   color: #999;
-  font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 0.85em "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;
