@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>This is oziroe.</title>
+  <subtitle>Please call me cowsay.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://oziroe.github.io/"/>
+  <updated>2017-06-10T07:10:46.000Z</updated>
+  <id>https://oziroe.github.io/</id>
+  
+  <author>
+    <name>oziroe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有关于pip、lxml和Minecraft的坑各一则</title>
+    <link href="https://oziroe.github.io/2017/06/10/%E6%9C%89%E5%85%B3%E4%BA%8Epip%E3%80%81lxml%E5%92%8CMinecraft%E7%9A%84%E5%9D%91%E5%90%84%E4%B8%80%E5%88%99/"/>
+    <id>https://oziroe.github.io/2017/06/10/有关于pip、lxml和Minecraft的坑各一则/</id>
+    <published>2017-06-10T06:58:52.000Z</published>
+    <updated>2017-06-10T07:10:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>流年不利。</p>
+<a id="more"></a>
+<hr>
+<p>pip的配置文件在linux/macOS和Windows当中下的路径是不同的。参考<a href="http://www.cnblogs.com/yudar/p/4444097.html" target="_blank" rel="external">这篇博客</a>，在Windows下的路径为<code>%HOMEPATH%\pip\pip.ini</code>，而不是<code>~/.pip/pip.conf</code>。</p>
+<hr>
+<p>最近lxml更新到了3.8.0，然而该版本在Windows上无法使用。具体症状是<code>from lxml import etree</code>会出现DLL找不到的情况。解决方案是回退到3.7.3版本即可。</p>
+<hr>
+<p>Minecraft更新了1.12正式版，然而……崩溃了。</p>
+<p><img src="/images/Minecraft报错信息.png" alt="报错信息"></p>
+<p>看起来并没有找到一个叫做<code>ca.weblite.objc.NSObject</code>的类……开玩笑吗你找不到Objective-C的爷爷类。希望不是因为盗版登录器的兼容问题吧。毕竟我还只是弱鸡一个，没钱给自己买正版。</p>
+<p><span style="color: grey">从今天起，少说废话，节约各位看官的生命。</span></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;流年不利。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
+    
+      <category term="Bug" scheme="https://oziroe.github.io/tags/Bug/"/>
+    
+      <category term="Minecraft" scheme="https://oziroe.github.io/tags/Minecraft/"/>
+    
+      <category term="pip" scheme="https://oziroe.github.io/tags/pip/"/>
+    
+      <category term="Java" scheme="https://oziroe.github.io/tags/Java/"/>
+    
+      <category term="macOS" scheme="https://oziroe.github.io/tags/macOS/"/>
+    
+      <category term="Cacoa" scheme="https://oziroe.github.io/tags/Cacoa/"/>
+    
+      <category term="lxml" scheme="https://oziroe.github.io/tags/lxml/"/>
+    
+      <category term="DLL" scheme="https://oziroe.github.io/tags/DLL/"/>
+    
+      <category term="Windows" scheme="https://oziroe.github.io/tags/Windows/"/>
+    
+      <category term="Objective-C" scheme="https://oziroe.github.io/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>离散数学代数系统部分的归纳整理</title>
+    <link href="https://oziroe.github.io/2017/06/09/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E9%83%A8%E5%88%86%E7%9A%84%E5%BD%92%E7%BA%B3%E6%95%B4%E7%90%86/"/>
+    <id>https://oziroe.github.io/2017/06/09/离散数学代数系统部分的归纳整理/</id>
+    <published>2017-06-09T09:18:11.000Z</published>
+    <updated>2017-06-09T12:50:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/代数系统.png" alt="代数系统简图"></p>
+<p>每一次画示意图，我都发誓这是我最后一次画示意图。神呐救救我的布局吧。</p>
+<a id="more"></a>
+<ol>
+<li>集合的性质是由公理得出的。</li>
+<li>两个集合的叉积（笛卡尔积）的一个子集称为这两个集合上的关系。<ul>
+<li>等价关系的证明：<strong>自反</strong>、<strong>对称</strong>、<strong>传递</strong>。</li>
+<li>半序关系的证明：<strong>自反</strong>、<strong>反对称</strong>、<strong>传递</strong>。</li>
+</ul>
+</li>
+<li>函数的证明：<strong>左满右唯一</strong>。</li>
+<li>运算的证明：<strong>封闭性</strong>。<ol>
+<li>通常出现在群上运算的规律：<strong>结合律</strong>，<strong>交换律</strong>，<strong>分配率</strong>。<ul>
+<li>对于某两个运算$\otimes$和$\oplus$，则<strong>$\otimes$对$\oplus$的分配率</strong>：$a \otimes (b \oplus c) = (a \otimes c) \oplus (b \otimes c)$。注意哪一个在里面。</li>
+</ul>
+</li>
+<li>通常出现在格上运算的规律：<strong>吸收率</strong>，<strong>幂等律</strong>，<strong>交换律</strong>，<strong>结合律</strong>，<strong>模律</strong>。模律是对称的。</li>
+<li>通常出现在群上运算的特殊元素：<strong>零元</strong>、<strong>幺元</strong>、<strong>零因子</strong>、<strong>逆元</strong>、<strong>生成元</strong>。</li>
+<li>通常出现在格上运算的特殊元素：<strong>补元</strong>。</li>
+<li>通常用来组成群上运算的基本运算：<strong>加</strong>、<strong>乘</strong>、<strong>模加</strong>、<strong>模乘</strong>。</li>
+<li>通常用来组成格上运算的基本运算：<strong>最大公约数</strong>、<strong>最小公倍数</strong>、<strong>交</strong>（与）、<strong>并</strong>（或）、<strong>补</strong>（非）。</li>
+</ol>
+</li>
+<li>代数系统的证明：<strong>运算封闭</strong>。<ul>
+<li>子代数系统证明：<strong>非空</strong>、<strong>包含</strong>、<strong>运算封闭</strong>。</li>
+</ul>
+</li>
+<li>半群的证明：<strong>运算封闭</strong>、<strong>结合律</strong>。<ul>
+<li>子半群的证明：<strong>非空</strong>、<strong>包含</strong>、<strong>运算封闭</strong>。（结合律继承）</li>
+</ul>
+</li>
+<li>群的证明：<strong>运算封闭</strong>、<strong>结合律</strong>、<strong>有幺元</strong>、<strong>每个元素都有逆元</strong>。<ul>
+<li>子群的证明：<strong>非空</strong>、<strong>包含</strong>、<strong>幺元属于子集</strong>、<strong>运算的混合封闭性</strong>：$\forall x,y \in S,\, x \oplus y^{-1} \in S$。（结合律继承）</li>
+</ul>
+</li>
+</ol>
+<p><span style="color: grey">剩下的还没复习完，未完待续。</span></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/images/代数系统.png&quot; alt=&quot;代数系统简图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;每一次画示意图，我都发誓这是我最后一次画示意图。神呐救救我的布局吧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="离散数学" scheme="https://oziroe.github.io/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="代数系统" scheme="https://oziroe.github.io/tags/%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客改版，格式微调实记</title>
+    <link href="https://oziroe.github.io/2017/06/08/%E5%8D%9A%E5%AE%A2%E6%94%B9%E7%89%88%EF%BC%8C%E6%A0%BC%E5%BC%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E8%AE%B0/"/>
+    <id>https://oziroe.github.io/2017/06/08/博客改版，格式微调实记/</id>
+    <published>2017-06-08T14:51:27.000Z</published>
+    <updated>2017-06-08T15:16:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为一个静态博客框架，Hexo已经足够优秀。只是或多或少有一点Bug存在，不知为何。这篇文章记录了一些微调和修改，以使整个网站看上去更加正常。</p>
+<a id="more"></a>
+<hr>
+<p>这个其实几天前就忍不了了……更换了页头的背景图，因为默认的实在看不清副标题。用这张图替换<code>themes/landscape/source/css/images/banner.jpg</code>即可。</p>
+<p><img src="/images/封面图.jpg" alt="新的封面图"></p>
+<hr>
+<p>更换了字体为Open Sans。这个字体是从Typora的配置里面拿出来的，用Typora的时候实在是眼馋得不得了。将Typora主题文件夹里的<code>github</code>文件夹复制到博客的<code>themes/landscape/source/css/fonts</code>文件夹下，然后添加文件<code>themes/landscape/source/css/github-font.css</code>，内容如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">include</span>-<span class="keyword">when</span>-<span class="keyword">export</span> url(http://fonts.googleapis.com/css?family=Open+Sans:<span class="number">400</span>italic,<span class="number">700</span>italic,<span class="number">700</span>,<span class="number">400</span>&amp;subset=latin,latin-ext);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* css forked from https://github.com/GitbookIO/gitbook</div><div class="line">* www.gitbook.com</div><div class="line">* Apache License</div><div class="line">* https://github.com/GitbookIO/gitbook/blob/master/LICENSE</div><div class="line">**/</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Regular'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这一段是从Typora的<code>github.css</code>文件中复制出来的，看起来Typora是从Gitbook复制的。对原作者表示感谢。文件路径稍有更改。</p>
+<p>在同目录下的<code>style.styl</code>中添加一行：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import <span class="string">"github-font.css"</span></div></pre></td></tr></table></figure>
+<p>即可大功告成。</p>
+<hr>
+<p>原本的日期显示有一点问题。修改<code>themes/landscape/layout/_widget/archive.ejs</code>中的日期格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;% if (site.posts.length)&#123; %&gt;</div><div class="line">  &lt;div class=&quot;widget-wrap&quot;&gt;</div><div class="line">    &lt;h3 class=&quot;widget-title&quot;&gt;&lt;%= __(&apos;archive_a&apos;) %&gt;&lt;/h3&gt;</div><div class="line">    &lt;div class=&quot;widget&quot;&gt;</div><div class="line">      &lt;%- list_archives(&#123;show_count: theme.show_count, type: theme.archive_type, format: &apos;YYYY年M月&apos;&#125;) %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>注意第五行的格式变化。类似的还有<code>themes/landscape/layout/_partial/archive-post.ejs</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;article class=&quot;archive-article archive-type-&lt;%= post.layout %&gt;&quot;&gt;</div><div class="line">  &lt;div class=&quot;archive-article-inner&quot;&gt;</div><div class="line">    &lt;header class=&quot;archive-article-header&quot;&gt;</div><div class="line">      &lt;%- partial(&apos;post/date&apos;, &#123;class_name: &apos;archive-article-date&apos;, date_format: &apos;M月D日&apos;&#125;) %&gt;</div><div class="line">      &lt;%- partial(&apos;post/title&apos;, &#123;class_name: &apos;archive-article-title&apos;&#125;) %&gt;</div><div class="line">    &lt;/header&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/article&gt;</div></pre></td></tr></table></figure>
+<p>注意第四行的日期格式。这样做损失了多国语言的兼容性，不过参考<a href="https://hexo.io/zh-cn/docs/helpers.html#list-archives" target="_blank" rel="external">官方文档</a>也没有看出什么名堂。希望有更好的办法吧。</p>
+<hr>
+<p>在主题的配置文件<code>_config.yml</code>当中去掉了fancybox效果，去掉了tag边栏。前者加载太慢了，对移动端的兼容也不太好；后者纯属个人喜好。</p>
+<hr>
+<p>大概的改动就是这些。默认主题landscape可以满足大多数日常所需，曾经做得大改动就是改了tag的位置并且为其加上了五颜六色的背景色。不过这回应该不会这样做了吧。</p>
+<p>为什么高亮没有EJS。是不是应该换一个……算了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为一个静态博客框架，Hexo已经足够优秀。只是或多或少有一点Bug存在，不知为何。这篇文章记录了一些微调和修改，以使整个网站看上去更加正常。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="https://oziroe.github.io/tags/hexo/"/>
+    
+      <category term="oziroe.github.io" scheme="https://oziroe.github.io/tags/oziroe-github-io/"/>
+    
+      <category term="ejs" scheme="https://oziroe.github.io/tags/ejs/"/>
+    
+      <category term="stylus" scheme="https://oziroe.github.io/tags/stylus/"/>
+    
+      <category term="typora" scheme="https://oziroe.github.io/tags/typora/"/>
+    
+      <category term="css" scheme="https://oziroe.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对于顺序任务可控执行的合理封装</title>
+    <link href="https://oziroe.github.io/2017/06/07/%E5%AF%B9%E4%BA%8E%E9%A1%BA%E5%BA%8F%E4%BB%BB%E5%8A%A1%E5%8F%AF%E6%8E%A7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%90%88%E7%90%86%E5%B0%81%E8%A3%85/"/>
+    <id>https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/</id>
+    <published>2017-06-07T06:07:16.000Z</published>
+    <updated>2017-06-07T07:48:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于<a href="https://github.com/oziroe/Bitabase" target="_blank" rel="external">Bitabase</a>这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：<code>Bitabase</code>部分承担真正的爬取工作部分，<code>web</code>（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。</p>
+<p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
+<a id="more"></a>
+<p>根据<a href="/2017/06/05/简单的可暂停单工作线程模型/" title="上一篇文章中">上一篇文章中</a>所描述的，<code>interface</code>为我提供了一个简单的单工作线程，其实还有一个用来提起网络请求的接口，长成这个样子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line">                text: bool = True, **kwargs) -&gt; (bool, dict or str or bytes):</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>嗯，看来高亮不能正确处理换行，编辑器也不能正确处理Tab，真是一个充满恶意的世界呀。</p>
+<p>有了以上两种东西以后，问题就变成了如何把它们组装起来。经过考虑我决定把“请求”作为一个任务和产品。这个概念过于抽象，所以我用类比的方式给接口命名，以及写这篇博客。因此，下面的提示非常重要：</p>
+<p><strong>注意：本文作者默认读者对于<a href="http://ow.blizzard.cn/home" target="_blank" rel="external">《守望先锋》</a>有基本的了解（世界观、英雄等），为了不影响观看本文的体验，请不满足此假设的读者点击前面的链接提高自身姿势水平，谢谢配合。</strong></p>
+<p>好了，这回我们从顶至下地进行游览。一下代码摘自单元测试，可以算是最简单的应用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_hanzo</span><span class="params">(self)</span>:</span></div><div class="line">    after = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(hanzo)</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> after</div><div class="line">        after = hanzo</div><div class="line"></div><div class="line">    baidu_hanzo = Hanzo(<span class="string">'https://baidu.com'</span>, callback)</div><div class="line">    overwatch = Overwatch()</div><div class="line">    overwatch.conscript([baidu_hanzo])</div><div class="line">    overwatch.dismiss()</div><div class="line">    self.assertIsInstance(after, Hanzo)</div><div class="line">    self.assertIsInstance(after.data, str)</div><div class="line">    self.assertEqual(after.data[:<span class="number">15</span>], <span class="string">'&lt;!DOCTYPE html&gt;'</span>)</div></pre></td></tr></table></figure>
+<p>可以看到两个基础的类：半藏<code>Hanzo</code>和守望先锋<code>Overwatch</code>。这里面的守望先锋特制那支队伍（“We are overwatch!”），而非游戏本身。每个半藏承载着一个请求，调用一个半藏实例的<code>fire</code>方法（射箭）就会把这个请求发送出去——下层当时是调用了<code>get_request</code>方法。每个半藏还会接受一个回调函数作为构造参数，这个回调函数接受一个半藏实例作为参数，而这个实例就是射完了箭的半藏。在<code>fire</code>当中半藏会用请求返回的数据更新自身，从而供回调函数使用。半藏不是老说“为你效命”吗？这个回调函数就叫<code>servicing</code>，没毛病。</p>
+<p><code>Overwatch</code>本质上就是把<code>worker</code>的接口统一到了一个类里，但是区别在于守望先锋的团队对于它的队员有要求：目前来说只能是半藏。而<code>worker</code>并不在意你把什么东西当做任务推进去了——它只是原封不动地把任务送进<code>worker_method</code>当中去了而已。守望先锋的<code>conscript</code>（应征入伍）接口接受一列半藏作为参数，把它们加入到守望先锋的队伍当中去，并按照顺序调用每一个半藏的<code>fire</code>。而<code>dismiss</code>（解散）则对应着<code>wait_for_worker_finish</code>，阻塞等待半藏们各自射完箭，并将自身的状态更新为<code>dismissed</code>，不再接受更多半藏的入伍请求。<code>retire</code>（退役）接口用于将已经射完箭的半藏送回它所效命的主子那里去，具体的就是调用每一个产品队列里的半藏携带的<code>servicing</code>回调函数。你可以看到上面的例子当中没有出现这个接口，因为在解散守望先锋的时候这个接口会自动被调用——挺合理的。另外这个接口也会在运行过程中周期性的被调用到。</p>
+<p>先来看一段具体的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max_team_member: int = <span class="number">0</span>, max_retry: int = <span class="number">3</span>)</span>:</span></div><div class="line">    self.worker = create_worker(self._duty)</div><div class="line">    self.member_count = <span class="number">0</span></div><div class="line">    self.total_hanzo_count = <span class="number">0</span></div><div class="line">    self.max_team_member = max_team_member <span class="keyword">if</span> max_team_member &gt; <span class="number">0</span> <span class="keyword">else</span> \</div><div class="line">        Overwatch.max_team_member</div><div class="line">    self.max_retry = max_retry</div><div class="line">    self.hanzoes = &#123;&#125;</div><div class="line">    self.retry_count = &#123;&#125;</div><div class="line">    self.dismissed = <span class="keyword">False</span></div><div class="line">    self.result = <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<p>这是守望先锋的构造函数。可以看到用来当做<code>worker</code>的回调函数是<code>self._duty</code>，接下来会详细研究它，而其他的一些量中，头三个比较重要。一个守望先锋队伍是有人数上限的，不能无限地让射完了箭的半藏堆在队伍里，这样不利于程序的健壮性。每当半藏的人数达到上限的时候，就要先让完成了工作的半藏们退休，然后再接着射箭：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_duty</span><span class="params">(self, hanzo_id: int)</span> -&gt; int:</span></div><div class="line">    <span class="keyword">if</span> self.member_count == self.max_team_member:</div><div class="line">        self.retire()</div><div class="line">    self.total_hanzo_count += <span class="number">1</span></div><div class="line">    self.hanzoes[hanzo_id].fire()</div><div class="line">    self.member_count += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> hanzo_id</div></pre></td></tr></table></figure>
+<p>上述逻辑在此表达的比较清楚。这里你可能会有疑问了，说好的把半藏作为任务呢？怎么是传的ID，而把半藏本人给扣在队伍里了？这里就要涉及到实现过程中遇到的第一个坑了。</p>
+<p>如前一篇文章中所记述，worker与主线程之间的通信（交换任务和产品）是用过<code>Pipe</code>来实现的。而<code>Pipe</code>在传输对象前要先对其进行序列化。我的理解是为了防止已经进入管道的对象被别的线程修改，造成读取时与原始的状态不一致。而序列化是通过调用<code>pickle</code>来实现的。而<code>pickle</code>……在一篇Stack Overflow的回答当中直接被用了“broken”来形容，我觉得不算夸张。由于半藏实例要包含一个回调函数，因此无法被序列化。经过若干企图“绕过”的尝试失败以后，我只好采取如上的迂回办法。由此对应的入伍方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">conscript</span><span class="params">(self, hanzo_list: Iterable[Hanzo])</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    self.hanzoes.update(&#123;id(hanzo): hanzo <span class="keyword">for</span> hanzo <span class="keyword">in</span> hanzo_list&#125;)</div><div class="line">    append_tasks(self.worker, map(id, hanzo_list))</div></pre></td></tr></table></figure>
+<p>拿<code>id</code>的返回值作键，应该是高枕无忧了吧。</p>
+<hr>
+<p>先给出退役接口的实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">retire</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    retry_list = []</div><div class="line">    <span class="keyword">for</span> hanzo_id <span class="keyword">in</span> get_products(self.worker):</div><div class="line">        <span class="keyword">if</span> hanzo_id <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        hanzo = self.hanzoes[hanzo_id]</div><div class="line">        <span class="keyword">if</span> hanzo.ok:</div><div class="line">            hanzo.refine()</div><div class="line">        <span class="keyword">elif</span> self.dismissed:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Log here.</span></div><div class="line">            <span class="keyword">pass</span></div><div class="line">        <span class="keyword">elif</span> self.retry_count.get(hanzo, <span class="number">-1</span>) == self.max_retry:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Log here.</span></div><div class="line">            <span class="keyword">pass</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.retry_count[hanzo] = <span class="number">1</span> <span class="keyword">if</span> hanzo <span class="keyword">not</span> <span class="keyword">in</span> self.retry_count \</div><div class="line">                <span class="keyword">else</span> self.retry_count[hanzo] + <span class="number">1</span></div><div class="line">            hanzo.ok = hanzo.exception = <span class="keyword">None</span></div><div class="line">            retry_list.append(hanzo)</div><div class="line">            <span class="keyword">continue</span></div><div class="line">        hanzo.servicing(hanzo)</div><div class="line">        <span class="keyword">del</span> self.hanzoes[hanzo_id]</div><div class="line">    self.member_count = <span class="number">0</span></div><div class="line">    self.conscript(retry_list)</div></pre></td></tr></table></figure>
+<p>是不是比想象中的要复杂？这是因为我写了另一个功能：出错重试。拿到半藏实例之后的大条件分支里一共有一下四种情形：</p>
+<ul>
+<li>如果箭射得没问题，在<code>fire</code>当中<code>ok</code>会被设置为<code>True</code>。此时执行<code>refine</code>（精炼）函数，将拿到的纯文本/json对象数据转化成更特异化的形式，以方便主子处理。在<code>Hanzo</code>当中<code>refine</code>就是一个空方法，在子类当中会被覆写。</li>
+<li>如果箭没射好但队伍已经解散了，那么也就没有重试的机会了（下层的<code>worker</code>已经关闭，不能接收更多的任务了），所以不重试。</li>
+<li>如果已经达到了最大重试上限，那也不重试。</li>
+<li>否则，将两个标志着错误的状态（<code>ok == False</code>和<code>exception != None</code>）清除掉，这样就把半藏洗干净了，可以放回队列里继续用。由于条件分支之后的代码会把半藏送回老家，而进入这条分支的半藏还是个……傻半藏，所以跳过。</li>
+</ul>
+<p>最后把队伍人数清零（注意人数是指射完箭的人数哦），把洗完了傻半藏重新推回服役列表当中去。退役仪式圆满结束。</p>
+<p>这里可以看到，如果不是队伍的最后几名半藏，那么什么时候被送回主人那里是不确定的。这个模型和思想有点类似于node的异步的感觉，算是玩了几年WEB积累的一点直觉吧。</p>
+<hr>
+<p>最后就是退役接口的实现了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dismiss</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">    self.dismissed = <span class="keyword">True</span></div><div class="line">    self.result = wait_for_worker_finish(self.worker)</div><div class="line">    <span class="comment"># The last group of hanzoes have not been retired.</span></div><div class="line">    self.retire()</div></pre></td></tr></table></figure>
+<p>这里一定要注意更新<code>dismissed</code>必须放在最前面，因为<code>wait_for_worker_finish</code>一上来就会给任务队列推一个<code>None</code>代码没有新任务了，如果之后再通过任何途径调用了<code>retire</code>时又推了新任务，那么这个任务就不可能被执行到。事实上应该是完全推不进去才对……感觉代码又一次不健壮了……</p>
+<hr>
+<p>最后分享一个有可能是史上最简陋的mock：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FakeSession</span><span class="params">(Session)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, url, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">raise</span> RequestException(<span class="string">'This is a test exception.'</span>)</div></pre></td></tr></table></figure>
+<p>我的每一层的网络接口都可以接受一个<code>requests.Session</code>对象来代替直接从<code>requests.get</code>或者类似接口发送请求。最初这么做只是因为这样效率高，没想到有奇效……只要把这个类的实例作为session传进去就可以模拟断网了……于是我的单元测试覆盖率终于达到了100%。</p>
+<p><img src="/images/牛逼坏了叉会腰.jpg" alt="可把我牛逼坏了"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于&lt;a href=&quot;https://github.com/oziroe/Bitabase&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bitabase&lt;/a&gt;这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：&lt;code&gt;Bitabase&lt;/code&gt;部分承担真正的爬取工作部分，&lt;code&gt;web&lt;/code&gt;（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Bitabase&lt;/code&gt;底下没有更加细分的模块。&lt;code&gt;interface.py&lt;/code&gt;是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；&lt;code&gt;base.py&lt;/code&gt;是代码真正的基础，将&lt;code&gt;interface.py&lt;/code&gt;里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如&lt;code&gt;web&lt;/code&gt;模块）都不应该越过&lt;code&gt;base&lt;/code&gt;而直接引用&lt;code&gt;interface&lt;/code&gt;。今天要讲的就是&lt;code&gt;base&lt;/code&gt;模块当中最开始的一部分。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
+    
+      <category term="Bitabase" scheme="https://oziroe.github.io/tags/Bitabase/"/>
+    
+      <category term="设计模式" scheme="https://oziroe.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单的可暂停单工作线程模型</title>
+    <link href="https://oziroe.github.io/2017/06/05/%E7%AE%80%E5%8D%95%E7%9A%84%E5%8F%AF%E6%9A%82%E5%81%9C%E5%8D%95%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/</id>
+    <published>2017-06-05T11:50:05.000Z</published>
+    <updated>2017-06-05T13:16:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。</p>
+<p><img src="/images/我好菜啊.jpg" alt="我好菜啊"></p>
+<p>这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能<strong>把部分成果拿出来</strong>。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了</p>
+<p>使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。</p>
+<a id="more"></a>
+<p>之前在写的时候通过查询大量<a href="https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python" target="_blank" rel="external">Stackoverflow的问题</a>以及<del>官方资料</del>（这玩意好像没有官方文档），成功地绕了一个弯：为单个的工作线程开了一个<code>multiprocessing.pool.ThreadPool</code>，据说这样的好处是可以方便的拿到返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    pool = ThreadPool(processes=<span class="number">1</span>)</div><div class="line">    async_result = pool.apply_async(real_worker)</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="string">'pool'</span>: pool,</div><div class="line">        <span class="string">'result'</span>: async_result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><em>注意：写的时候有点欠考虑，这样引用代码也许不太便于理解。可以参考<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这次修改的commit</a>，谢谢配合。</em></p>
+<p>然后在工作结束的时候结束进程并拿返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_for_worker_finish</span><span class="params">(worker)</span>:</span></div><div class="line">    <span class="comment"># ... here is some code tells worker there's no more work.</span></div><div class="line">    result = worker[<span class="string">'result'</span>].get()</div><div class="line">    <span class="comment"># ... some code update worker's state</span></div><div class="line">    <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
+<p>但是这个返回值并不是worker真正的产品（虽然这是<code>ThreadPool</code>的正确用法），因为这个返回值只有等全部的工作都做完了才能拿到，中途暂停（等会再说我是怎么实现暂停的）的时候是拿不到的。所以又开了两个<code>multiprocessing.Queue</code>，分别用来往worker里传任务和从worker往外传产品：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(worker_method)</span>:</span></div><div class="line">    tasks_queue = Queue()</div><div class="line">    products_queue = Queue()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            task = tasks_queue.get()</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            product = worker_method(task)</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            products_queue.put(product)</div><div class="line">    </div><div class="line">    <span class="comment"># ...</span></div><div class="line">    worker = &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'in_queue'</span>: tasks_queue,</div><div class="line">        <span class="string">'out_queue'</span>: products_queue,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>希望你还能把这个函数和上面那个合在一起。这样一来，真正传进来的<code>worker_method</code>所要实现的逻辑就很简单了：接收一个参数作为任务，返回产品。它还可以任性地抛异常——<code>real_worker</code>里的主循环当中省略的大部分代码就是为了处理这个的。这样一来随时增派新任务和获取已经完成部分的产品就变得非常容易了：只要传<code>worker</code>作为参数，取得对应的队列调用库的接口即可。具体可以参考官方文档。</p>
+<p>在<code>real_worker</code>的主循环中做的另一件事就是实现暂停功能，这是通过一对扭在一起的<code>multiprocessing.Event</code>实现的。具体如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    working = Event()</div><div class="line">    working.set()</div><div class="line">    pausing = Event()</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            pausing.set()</div><div class="line">            working.wait()</div><div class="line">            pausing.clear()</div><div class="line">            </div><div class="line">            <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'work_event'</span>: working,</div><div class="line">        <span class="string">'pause_event'</span>: pausing,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pause_worker</span><span class="params">(worker: dict)</span> -&gt; bool:</span></div><div class="line">	<span class="comment"># ...</span></div><div class="line">    worker[<span class="string">'work_event'</span>].clear()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="comment"># Wait for worker finishing current task.</span></div><div class="line">    worker[<span class="string">'pause_event'</span>].wait()</div><div class="line">    <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>之所以还需要一个<code>pause_event</code>主要是因为一个BUG：最后一个任务可能会在worker被暂停以后被推进产品队列当中去。有了这个事件，<code>pause_worker</code>会一直等到最后一个产品被做完以后才返回，就不会出现莫名丢产品的情况了。</p>
+<p>这里省略的代码主要是用来确定当前worker状态的两个布尔值：<code>is_working</code>和<code>is_dead</code>。这两个值不仅可以用来作安全检查，还可以对外提供一个友善的接口。</p>
+<hr>
+<p>我跟你讲，以上是背景资料……整整写了1024个字……我也深表歉意。希望你能对接下来的正文依然充满了兴趣。</p>
+<p>今天原本是要在上述的基础接口之上建立一层面向对象的封装，并写一篇类似于《半藏与守望先锋不得不说的故事》之类的文章【误。但是在我点了单元测试之后（单元测试爽过吸大麻），有一个API接口的测试挂了。我当即大吃一惊，难道这么几天哔哩哔哩还改了接口？仔细一看更吃惊了，只见这是用来读取多P视频各分P名字的接口，然而前两P的名字顺序反了！这是什么情况？于是我来到B站上一看：</p>
+<p><del>截图</del></p>
+<p>是的你没有看错，就是大名鼎鼎的保加利亚巫妖王……前两P的名字居然交换了次序！这怎么可能呢？由于我在几个星期前确确实实跑了几十遍单元测试通过了，所以才如此的确定。反正我是百思不得其解并兴奋地发了一条动态：</p>
+<blockquote>
+<p>由于我的爬虫单元测试fail了，我可能是世界上第一个发现av170001前两P名字对调了的人。</p>
+</blockquote>
+<p>好吧我要讲的不是这个。我要说的是，我手贱点了一下“Concurrency Diagram”的按钮以后，看到了一幅恐怖的景象：</p>
+<p><img src="/images/并发测试图-1.png" alt="并发测试图#1"></p>
+<p>怎么有线程没有停止？经过反复测试，我发现当我把单线程的线程池里的线程数改成4的时候，没有停止的线程数变成了四倍：</p>
+<p><img src="/images/并发测试图-2.png" alt="并发测试图#2"></p>
+<p><img src="/images/我的心好痛.png" alt="我的心好痛"></p>
+<p>我明明在等待停止worker的函数里调用了<code>wait</code>，甚至还调用了<code>close</code>啊，为什么会这样呢？然后我又发现，所有没有停止的线程全都有一个同名且正常停止的线程。就像前两张图里画的那样。</p>
+<p><img src="/images/WTF.png" alt="What the f*ck"></p>
+<p>经过一圈Google无果之后（这个情况复杂到我不知道如何描述），我尝试着在单元测试里把各个节点的活跃线程数打印出来，然后发现，它每次运行的结果不一样……</p>
+<p><img src="/images/我的心好痛.png" alt="我的心好痛*2"></p>
+<p>这我又能怎么办呢？我只好决定把线程池改成一个单独的线程。还记得我为什么要用线程池吗？“可以方便地拿到返回值”。于是我尝试在worker里加一个字段用来存返回值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = <span class="keyword">None</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里<code>result</code>的结构是按照<code>ok, exception</code>的约定。然后我就发现，对<code>result</code>的修改好像不起作用……冥冥中的直觉让我把它改成了这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = &#123;<span class="string">'value'</span>: <span class="keyword">None</span>&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result[<span class="string">'value'</span>] = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>是的你没有猜错，好了。也许你会说“稍有常识……”，没错我就是没有常识。</p>
+<hr>
+<p>下一个坑还要深一点点。在我把线程池改成线程以后，图表变成了这样：</p>
+<p><img src="/images/并发测试图-3.png" alt="并发测试图#3"></p>
+<p>看起来好多了，只不过两条队列并没有正常地终止，每一次都要等到下一个测试用例之后才结束，最后一个测试甚至延伸了好久。经过一番操作我把它们替换成了<code>multiproccessing.Pipe</code>，也就是一对<code>Connection</code>。如果你有经验应该已经猜到了，我在worker结束以后取结果的代码抛了<code>EOFError</code>。原因是当worker线程结束的时候它所对应的<code>Connection</code>被回收掉了。于是我只好把worker改成了这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">worker = &#123;</div><div class="line">    <span class="string">'worker'</span>: worker,</div><div class="line">    <span class="string">'result'</span>: result,</div><div class="line">    <span class="string">'connect'</span>: host_conn,</div><div class="line">    <span class="string">'work_event'</span>: working,</div><div class="line">    <span class="string">'pause_event'</span>: pausing,</div><div class="line">    <span class="string">'is_working'</span>: <span class="keyword">True</span>,</div><div class="line">    <span class="string">'is_dead'</span>: <span class="keyword">False</span>,</div><div class="line">    <span class="comment"># this prevents auto-close</span></div><div class="line">    <span class="string">'_worker_connection'</span>: worker_conn,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>顺便加上了前面提到过的所有东西。于是，我的努力最终达到了效果：</p>
+<p><img src="/images/并发测试图-4.png" alt="并发测试图#4"></p>
+<p>没有多余线程啦！</p>
+<p><img src="/images/金正恩鼓掌.jpg" alt="鼓掌"></p>
+<p>最后，感谢每一个看完这篇不知所云文章的人。<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这里</a>是这次commit的地址，你可以看一看完整版的代码。下一篇文章应该可以写我是如何构建上层抽象的了……大概吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/我好菜啊.jpg&quot; alt=&quot;我好菜啊&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能&lt;strong&gt;把部分成果拿出来&lt;/strong&gt;。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了&lt;/p&gt;
+&lt;p&gt;使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
+    
+      <category term="Bitabase" scheme="https://oziroe.github.io/tags/Bitabase/"/>
+    
+      <category term="线程" scheme="https://oziroe.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于C++11/STL的邻接表图实现</title>
+    <link href="https://oziroe.github.io/2017/06/04/%E5%9F%BA%E4%BA%8EC-11-STL%E7%9A%84%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%9B%BE%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/</id>
+    <published>2017-06-04T13:47:14.000Z</published>
+    <updated>2017-06-04T14:41:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我也不记得这是我第几次口口声声说着“我再也不用C++了”然后又用了C++。用了会浪费大量时间，使程序陷入无限复杂度；不用会浪费大量代码量，使程序陷入无限繁琐。一个小循环过后就会进入大循环的下一个步骤：开始转向Python等快速迭代的脚本语言，直到忍受不了其灵活而转回所谓“一步一个脚印”的主导思想当中来。唉，如果上天再给我一次机会，我坚决不学C以外的其他语言。最多加上Python。好吧还是得有Java或者C#。算了当我什么都没说。</p>
+<p>这次实现的图是在昨天写完C版本的图之后，实在没忍住的成果。不知道为什么，在自己写的数据结构之上工作总有一种上不了台面的感觉，没有用STL来的舒坦。强烈克制住删代码的冲动以后，写了一套完全平行的图（项目代码膨胀的一个活生生的例子），并且放弃了“底层用STL上层暴露为C接口”的想法，毕竟用了C++而不用C++11，或者用了C++11而不用匿名函数，那么和咸鱼也没有什么区别了。</p>
+<a id="more"></a>
+<p>这回依然是一个邻接表的图，由于C++可以用模板，所以就不用再以索引的方式间接地访问顶点和边的数据了，这个图也就真的一个数据结构，而非仅仅是一堆锁链的集合了。首先定义一个辅助结构用来把边和有关信息绑定在一起：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vertex, <span class="keyword">typename</span> Edge&gt; <span class="class"><span class="keyword">struct</span> <span class="title">EdgeBox</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Vertex source, destination;</div><div class="line">    Edge edge;</div><div class="line"></div><div class="line">    EdgeBox(<span class="keyword">const</span> Vertex &amp;s, <span class="keyword">const</span> Vertex &amp;d, <span class="keyword">const</span> Edge &amp;e) &#123;</div><div class="line">        source = s;</div><div class="line">        destination = d;</div><div class="line">        edge = e;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在边当中包含终点信息的好处自不必说，包含起点的好处是……和终点对称。对就是这样。</p>
+<p>”所以说<code>Edge</code>就只是一个权重信息的过度抽象了？“确实有这种嫌疑，不过我的实际用例还真的用得到更多的信息：在一幅贝塞尔曲线作为边、曲线的交点作为顶点的图当中，一条边不但有起点终点，还有其对应的曲线的解析式。</p>
+<p>写C版本的图时有一个夙愿，就是删除一个顶点的时候把已此顶点作为终点的边也一并删除，然而由于下层数据结构（就是那个没什么用的<code>posarr</code>）的限制而难以实现。这次为了达成愿望，加入一个平行的字典专为此功能：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>&lt;Vertex, <span class="built_in">vector</span>&lt;EdgeType&gt;&gt; _graph;</div><div class="line"><span class="built_in">map</span>&lt;Vertex, <span class="built_in">vector</span>&lt;EdgeType&gt;&gt; _vend;</div></pre></td></tr></table></figure>
+<p>在<code>_graph</code>当中储存一般的邻接表结构，而<code>_vend[vert]</code>则储存以<code>vert</code>作为终点的边都有哪些。这时候边当中的起点字段就有用处了。</p>
+<p>几个加减顶点和边的接口无需多言，遍历顶点的边的接口有了C++11的匿名函数和<code>for (auto some : thing)</code>语法糖以后也变得流畅很多，唯一一个瑕疵是删除边时的遍历：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteEdge</span><span class="params">(<span class="keyword">const</span> Vertex &amp;start, <span class="keyword">const</span> Edge &amp;edge)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> box = _graph[start].cbegin(); box != _graph[start].cend(); box++) &#123;</div><div class="line">        <span class="keyword">if</span> (box-&gt;edge == edge) &#123;</div><div class="line">            _graph[start].erase(box);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的for循环没有办法用新语法，因为循环体内部的<code>erase</code>要访问迭代器本身。我想大概有更友善的方法吧。</p>
+<hr>
+<p>由于深度优先搜索不需要队列的加持（虽然有了STL也不是很麻烦了），所以先实现的出来。<strong>注意：请务必读到下一条水平线再复制粘贴！</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> PreviousMap = <span class="built_in">map</span>&lt;Vertex, <span class="keyword">const</span> Vertex *&gt;;</div><div class="line"><span class="keyword">using</span> SearchVisitor = function&lt;<span class="keyword">int</span> (<span class="keyword">const</span> Vertex &amp;v, <span class="keyword">const</span> Edge *through,</div><div class="line">                                    <span class="keyword">const</span> PreviousMap prev)&gt;;</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">int</span> _dfs(<span class="keyword">const</span> Vertex &amp;current, <span class="keyword">const</span> SearchVisitor &amp;visitor, <span class="keyword">const</span> Edge *through,</div><div class="line">         PreviousMap &amp;prev) <span class="keyword">const</span> &#123;</div><div class="line">    <span class="keyword">int</span> status = visitor(current, through, prev);</div><div class="line">    <span class="keyword">if</span> (status != <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> status;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> edge : _graph.at(current)) &#123;</div><div class="line">        <span class="keyword">if</span> (prev[edge.destination] != <span class="literal">nullptr</span>) &#123;</div><div class="line">            prev[edge.destination] = &amp;current;</div><div class="line">            <span class="keyword">int</span> s = _dfs(*prev[edge.destination], visitor, &amp;edge.edge, prev);</div><div class="line">            <span class="keyword">if</span> (s != <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> s;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfsVisit</span><span class="params">(<span class="keyword">const</span> Vertex &amp;start, <span class="keyword">const</span> SearchVisitor &amp;&amp;visitor)</span> <span class="keyword">const</span> </span>&#123;</div><div class="line">    PreviousMap prev;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> pair : _graph)</div><div class="line">        prev[pair.first] = <span class="literal">nullptr</span>;</div><div class="line">    <span class="keyword">return</span> _dfs(start, visitor, <span class="literal">nullptr</span>, prev);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里<code>SerachVisitor</code>借口的设计非常反人类，需要在匿名函数声明处写一大长串的参数类型，不过除了特别简单的遍历方法应该也不会已匿名函数的方法写出，所以尚可接受。其中<code>through</code>为遍历中是走哪一条边到达当前顶点的，如果是对出发点调用则该参数为<code>nullptr</code>。正因此才把这个参数改为指针，从而破坏了全引用借口的统一性。这么说来其实指针在C++当中起到了其他语言<code>Nullable</code>或者<code>?</code> <code>!</code>类型的功能，这么用真的没有问题吧……</p>
+<p><code>prev</code>储存每一个顶点在遍历顺序中的前一个顶点，回调函数还可以通过返回非0值得方式提前结束遍历，这对于寻找某种最优路的场景应该是比较友善的。考虑到C++11中的匿名函数可以捕获上层作用域中的变量，所以就没有必要传一个额外的payload了。</p>
+<p>为什么对外接口中接受的函数类型是个右值引用，而到了对内的接口就变成了左值引用呢？别问我，我只知道不这样写都会报错……</p>
+<p><img src="/images/我能怎么办，我也很绝望啊.jpeg" alt="我能怎么办，我也很绝望啊"></p>
+<p>上面的代码里有一个bug，聪明的你发现了吗？我忘记把起始点对应的<code>prev</code>设置好了……原来写博客还有debug的功能，真是太厉害了。</p>
+<hr>
+<p>这大概是我与C++的合作中体验最好的一次了，没有踩到语法的坑、标准库的坑以及编译器的坑。唯一美中不足地就是IDE有点撑不住了。（另外显然，博客的高亮插件也阵亡了。）我亲爱的CLion的代码补全从瞬间出现之间降至秒级，有时会产生一种在用编辑器的错觉。另外分享两则疯掉的CLion：</p>
+<p><img src="/images/CLion疯了-1.png" alt="CLion精神病病例#1"></p>
+<p><img src="/images/CLion疯了-2.png" alt="CLion精神病病例#2"></p>
+<p>后来呢？我想把图的实现代码命名为<code>adjgph.hpp</code>(<strong>adj</strong>ancency <strong>g</strong>ra<strong>ph</strong>)，把测试代码文件命名为<code>adjgph_test.cpp</code>，然而我写完以后发现CLion非常智能地帮助我保持了名字的统一性：我把它俩任意一个的<code>_test</code>去掉，另一个的后缀也会自动消失；反之亦然。</p>
+<p><img src="/images/妈的智障.png" alt="妈的智障"></p>
+<p>于是我只好动用了外部工具实现了我的目的，然后……bug就好了。是时候再放一次这张图了：</p>
+<p><img src="/images/还有这种操作.png" alt="就是有这种操作"></p>
+<p>这种莫名其妙的操作在JetBrains家的IDE上还出现过一次，以后有机会再写出来吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我也不记得这是我第几次口口声声说着“我再也不用C++了”然后又用了C++。用了会浪费大量时间，使程序陷入无限复杂度；不用会浪费大量代码量，使程序陷入无限繁琐。一个小循环过后就会进入大循环的下一个步骤：开始转向Python等快速迭代的脚本语言，直到忍受不了其灵活而转回所谓“一步一个脚印”的主导思想当中来。唉，如果上天再给我一次机会，我坚决不学C以外的其他语言。最多加上Python。好吧还是得有Java或者C#。算了当我什么都没说。&lt;/p&gt;
+&lt;p&gt;这次实现的图是在昨天写完C版本的图之后，实在没忍住的成果。不知道为什么，在自己写的数据结构之上工作总有一种上不了台面的感觉，没有用STL来的舒坦。强烈克制住删代码的冲动以后，写了一套完全平行的图（项目代码膨胀的一个活生生的例子），并且放弃了“底层用STL上层暴露为C接口”的想法，毕竟用了C++而不用C++11，或者用了C++11而不用匿名函数，那么和咸鱼也没有什么区别了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
+    
+      <category term="C++" scheme="https://oziroe.github.io/tags/C/"/>
+    
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
+      <category term="STL" scheme="https://oziroe.github.io/tags/STL/"/>
+    
+      <category term="图" scheme="https://oziroe.github.io/tags/%E5%9B%BE/"/>
+    
+      <category term="C++11" scheme="https://oziroe.github.io/tags/C-11/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单数组结构posarr及操作</title>
+    <link href="https://oziroe.github.io/2017/06/02/%E7%AE%80%E5%8D%95%E6%95%B0%E7%BB%84%E7%BB%93%E6%9E%84%E5%8F%8A%E6%93%8D%E4%BD%9C/"/>
+    <id>https://oziroe.github.io/2017/06/02/简单数组结构及操作/</id>
+    <published>2017-06-02T15:04:00.000Z</published>
+    <updated>2017-06-03T06:51:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实这是一种“假”的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *posarr_p;</div></pre></td></tr></table></figure>
+<p>一切操作，都围绕着这个如假包换的数组展开。</p>
+<p><img src="/images/还有这种操作.png" alt="就是有这种操作"></p>
+<a id="more"></a>
+<p>使用数组的第一个元素储存长度容易导致很多不良后果——比如遍历数组时，索引和元素的“位置”的偏差。因此我的解决方案是：没有使用的元素填-1，最后一个元素填-2，并且不使用它——不然就没法确定数组的结尾了。</p>
+<p>那么如果数据是-1或者-2怎么办？好办，要求数据不能小于0就行了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">posarr_initia</span><span class="params">(posarr_p memo, <span class="keyword">const</span> <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</div><div class="line">        memo[i] = <span class="number">-1</span>;</div><div class="line">    memo[size] = <span class="number">-2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>宏替换函数不推荐作为内联函数使用了，不过用来完成一些语言能力之外的事情还是可以的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR(name, size) int name[size + 1]; posarr_initia(name, size)</span></div></pre></td></tr></table></figure>
+<p>删除一个元素时用后面的元素填充，而添加元素时只要简单的在末尾找到一个空位就行了。目前的删除动作把每一个元素都向前移了一位，如果不在乎顺序的话可以拿最后一个元素填补空位，可以进一步提高效率：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">posarr_delete</span><span class="params">(posarr_p <span class="built_in">array</span>, <span class="keyword">const</span> <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>[pos] &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i = pos; <span class="built_in">array</span>[i + <span class="number">1</span>] &gt;= <span class="number">0</span>; i++)</div><div class="line">        <span class="built_in">array</span>[i] = <span class="built_in">array</span>[i + <span class="number">1</span>];</div><div class="line">    <span class="built_in">array</span>[i] = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">posarr_append</span><span class="params">(posarr_p <span class="built_in">array</span>, <span class="keyword">const</span> <span class="keyword">int</span> data)</span> </span>&#123;</div><div class="line">    assert(data &gt;= <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; <span class="built_in">array</span>[i] != <span class="number">-2</span>; i++)</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">array</span>[i] == <span class="number">-1</span>) &#123;</div><div class="line">            <span class="built_in">array</span>[i] = data;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还有一个喜闻乐见的toString工具函数。由于数据结构的限制，没有找到在一趟之内且不借助buffer的方法来先输出长度再输出各元素，所以只好遍历两趟。好在对于这种小数组，对于它的使用场景一般不会超过16个元素的长度，所以效率上不会有显著瓶颈。代码不贴了，效果大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">posarr#10[0, 1, 2, 3, 4, 5, 6, 7, ...]</div></pre></td></tr></table></figure>
+<p>只显示前八个元素，这样就算放在一行log当中也不会太尴尬。</p>
+<p>最后，一个用来遍历数组的工具宏替换函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    for (int index = 0, item = array[index]; item &gt;= 0; \</div><div class="line">         index++, item = array[index])</div></pre></td></tr></table></figure>
+<p>就是这些。下一步会添加刚刚想到的删除函数，并且把这个数据结构用来作邻接表组成的图数据结构的基石。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实这是一种“假”的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; *posarr_p;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;一切操作，都围绕着这个如假包换的数组展开。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/还有这种操作.png&quot; alt=&quot;就是有这种操作&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
+    
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
+      <category term="数据结构" scheme="https://oziroe.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+</feed>
