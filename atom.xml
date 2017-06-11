@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-06-10T07:10:46.000Z</updated>
+  <updated>2017-06-11T17:10:45.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>逃学归家而无病呻吟</title>
+    <link href="https://oziroe.github.io/2017/06/12/%E9%80%83%E5%AD%A6%E5%BD%92%E5%AE%B6%E8%80%8C%E6%97%A0%E7%97%85%E5%91%BB%E5%90%9F/"/>
+    <id>https://oziroe.github.io/2017/06/12/逃学归家而无病呻吟/</id>
+    <published>2017-06-11T16:51:21.000Z</published>
+    <updated>2017-06-11T17:10:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>原本应该是“归家有感”的标题被硬生生改成这样。唉，没办法，我就是受不了参差不齐的文件名。</p>
+<p>说是“逃学”，其实也是有请假单的。只是此时此刻室友们大概还在备战下周的五门考试，而我却刚刚写了个热水澡，坐在这里畅想明天与女朋友相见，实在有点莫名的心虚。</p>
+<p>不过这点心虚应该还是值得的。毕竟，人生中能同时体会到高考结束、长大成人和男朋友突然出现的喜悦的机会也就那么一次半次。嗯，你看，没有人打我的时候我能把自己塑造得多么高尚啊。</p>
+<a id="more"></a>
+<p>排队安检时前面的女生对着手机大声发着一条条语音：“你还没结婚就花了快二十万了你自己想想为了她值得吗……而且还不一定能结婚……”“法律上来说她不用和你一起付完按揭……”“我觉得你脑子被门夹了……”突然觉得自己活在蜜罐里。</p>
+<p>深夜坐着老爸开的车回家。他精神有点萎靡，打着哈欠，差点闯红灯。感觉很对不起父母，明明是自己贪图享乐还要把他们牵扯进来。</p>
+<p>班机上邻座的女生指着前排靠背背面的广告对同伴说：“你看它这是不是写错了，‘开户即享佣金万2.5’，应该是2.5万吧。”“然后还印了那么多遍。”同伴表示赞同和惋惜。我刚在内心嘲讽完她们的愚昧，就不得不再嘲讽一次我自己的自大。</p>
+<p>洗澡前看了一眼镜子中的自己。真的瘦。想起这学期出发前曾在镜子前拍了一张，用来在现在发一条对比的动态以展示一个学期的坚持锻炼有多大用处，然而……我好像更瘦了……肋骨都能看到两端了。还好我把存放那张照片的手机留在了学校。</p>
+<hr>
+<p>所以为什么会有这篇文字呢？</p>
+<p>今天在考场上第一次遇到了作文凑字吃力的情况。回忆了一下，我每天的写作主要分为毫无感情的技术介绍和超级隐晦的情感宣泄两种，一般人能看懂的部分太少了。我需要多写一些“正常”的东西。</p>
+<p><strong>还有，这不是一个纯技术博客。</strong></p>
+<p>冥冥之中我预感刚刚开始的今天我会玩得很high，不会有空写代码，为了不让commit断掉所以……【逃</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原本应该是“归家有感”的标题被硬生生改成这样。唉，没办法，我就是受不了参差不齐的文件名。&lt;/p&gt;
+&lt;p&gt;说是“逃学”，其实也是有请假单的。只是此时此刻室友们大概还在备战下周的五门考试，而我却刚刚写了个热水澡，坐在这里畅想明天与女朋友相见，实在有点莫名的心虚。&lt;/p&gt;
+&lt;p&gt;不过这点心虚应该还是值得的。毕竟，人生中能同时体会到高考结束、长大成人和男朋友突然出现的喜悦的机会也就那么一次半次。嗯，你看，没有人打我的时候我能把自己塑造得多么高尚啊。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://oziroe.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>有关于pip、lxml和Minecraft的坑各一则</title>
@@ -42,13 +77,13 @@
     </summary>
     
     
-      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
-    
       <category term="Bug" scheme="https://oziroe.github.io/tags/Bug/"/>
     
       <category term="Minecraft" scheme="https://oziroe.github.io/tags/Minecraft/"/>
     
       <category term="pip" scheme="https://oziroe.github.io/tags/pip/"/>
+    
+      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
     
       <category term="Java" scheme="https://oziroe.github.io/tags/Java/"/>
     
@@ -368,11 +403,11 @@
     </summary>
     
     
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
       <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
     
       <category term="C++" scheme="https://oziroe.github.io/tags/C/"/>
-    
-      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
     
       <category term="STL" scheme="https://oziroe.github.io/tags/STL/"/>
     
@@ -420,9 +455,9 @@
     </summary>
     
     
-      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
-    
       <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
+      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
     
       <category term="数据结构" scheme="https://oziroe.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
