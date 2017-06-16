@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-06-14T15:29:12.000Z</updated>
+  <updated>2017-06-16T12:19:32.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>眼光与耳光（水）</title>
+    <link href="https://oziroe.github.io/2017/06/16/%E7%9C%BC%E5%85%89%E4%B8%8E%E8%80%B3%E5%85%89%EF%BC%88%E6%B0%B4%EF%BC%89/"/>
+    <id>https://oziroe.github.io/2017/06/16/眼光与耳光（水）/</id>
+    <published>2017-06-16T12:18:06.000Z</published>
+    <updated>2017-06-16T12:19:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>为什么眼光和耳光，是两个意思完全不一样的词呢？</p>
+<p>如果我想形容一个人鉴赏音乐的“眼光”，该用什么词呢？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为什么眼光和耳光，是两个意思完全不一样的词呢？&lt;/p&gt;
+&lt;p&gt;如果我想形容一个人鉴赏音乐的“眼光”，该用什么词呢？&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="破事水" scheme="https://oziroe.github.io/tags/%E7%A0%B4%E4%BA%8B%E6%B0%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>某数据结构实验报告（水）</title>
@@ -483,9 +507,9 @@
     
       <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
     
-      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
-    
       <category term="数据结构" scheme="https://oziroe.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
     
   </entry>
   
