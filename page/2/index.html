@@ -66,6 +66,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-对于顺序任务可控执行的合理封装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/对于顺序任务可控执行的合理封装/" class="article-date">
+  <time datetime="2017-06-07T06:07:16.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于<a href="https://github.com/oziroe/Bitabase" target="_blank" rel="external">Bitabase</a>这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：<code>Bitabase</code>部分承担真正的爬取工作部分，<code>web</code>（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。</p>
+<p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/07/对于顺序任务可控执行的合理封装/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/" data-id="cj4p389zc000ej0onosn077bs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-简单的可暂停单工作线程模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/05/简单的可暂停单工作线程模型/" class="article-date">
+  <time datetime="2017-06-05T11:50:05.000Z" itemprop="datePublished">2017-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/05/简单的可暂停单工作线程模型/">简单的可暂停单工作线程模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。</p>
+<p><img src="/images/我好菜啊.jpg" alt="我好菜啊"></p>
+<p>这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能<strong>把部分成果拿出来</strong>。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了</p>
+<p>使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/05/简单的可暂停单工作线程模型/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/" data-id="cj4p389zk000kj0onk0n9a2ib" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-基于C-11-STL的邻接表图实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/04/基于C-11-STL的邻接表图实现/" class="article-date">
@@ -98,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/" data-id="cj4f3peek0003umondym5nm2t" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/" data-id="cj4p389yu0005j0onowv2y16m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STL/">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
@@ -144,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj4f3pef7000eumonkhb8yqbk" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj4p389z9000dj0on7irw1anw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
@@ -170,7 +260,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 15px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/破事水/" style="font-size: 15px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 13.33px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 16.67px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 13.33px;">做梦</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/破事水/" style="font-size: 13.33px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a>
     </div>
   </div>
 
@@ -179,7 +269,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -192,6 +282,14 @@
       <ul>
         
           <li>
+            <a href="/2017/07/04/4b的下一个进化步骤/">4b的下一个进化步骤</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/04/噩梦记/">噩梦记</a>
+          </li>
+        
+          <li>
             <a href="/2017/06/27/二梦记/">二梦记</a>
           </li>
         
@@ -201,14 +299,6 @@
         
           <li>
             <a href="/2017/06/16/眼光与耳光（水）/">眼光与耳光（水）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/14/某数据结构实验报告（水）/">某数据结构实验报告（水）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/12/逃学归家而无病呻吟/">逃学归家而无病呻吟</a>
           </li>
         
       </ul>

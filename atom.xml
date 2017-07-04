@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-06-27T04:02:19.000Z</updated>
+  <updated>2017-07-04T04:40:44.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -16,11 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>4b的下一个进化步骤</title>
+    <link href="https://oziroe.github.io/2017/07/04/4b%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%BF%9B%E5%8C%96%E6%AD%A5%E9%AA%A4/"/>
+    <id>https://oziroe.github.io/2017/07/04/4b的下一个进化步骤/</id>
+    <published>2017-07-04T04:27:08.000Z</published>
+    <updated>2017-07-04T04:40:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。</p>
+<a id="more"></a>
+<p>贯彻<a href="/2017/06/19/有关于数据结构角色和组织方式的一点思考/" title="上一篇相关文章">上一篇相关文章</a>的思想，我重新写了4b……其实不是。我发现贝塞尔曲线本身的复杂度超过了我的接受能力，所以将其改为直线，先写出了一个叫做4l的版本……其实也不是。我还没有写完用四种颜色填充图片的算法，所以大概只能叫rl(random colors background with lines)。之所以没有写完是因为自己实现的朴素算法在处理一些边界条件和浮点数相关的时候没有足够的经验，导致程序的崩溃率在95%左右。</p>
+<p>于是，我采用了一套解决方案。首先，改变技术栈。C++本身的复杂度依然是个问题。原本计划换成Swift，奈何它对于非App开发过于不友好。于是在首先由于个人原因排除了Python的前提下，选了Ruby。这货我一直都有一定的好感，其语言特性有一丝LISP的味道。而且其C API比Python简洁得多，之后遇到一定会有的用C拓展的阶段也会是个优势。</p>
+<p>然后，我需要专业知识的辅助。是的，就是这样一个小程序，一个用来生成符合我口味的桌面壁纸的小程序，现在要害得我啃英文大部头了。学了这些知识只为了写这一个程序性价比可不高。于是我决定看<a href="http://download.csdn.net/download/neoxiong/9839916" target="_blank" rel="external">PBRT</a>，之后真正将其中的技术尽量都转化到这个小程序里面。</p>
+<p>路漫漫其修远兮。各位保重，我可能又要好久不见了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
+      <category term="Ruby" scheme="https://oziroe.github.io/tags/Ruby/"/>
+    
+      <category term="Swift" scheme="https://oziroe.github.io/tags/Swift/"/>
+    
+      <category term="pbrt" scheme="https://oziroe.github.io/tags/pbrt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>噩梦记</title>
+    <link href="https://oziroe.github.io/2017/07/04/%E5%99%A9%E6%A2%A6%E8%AE%B0/"/>
+    <id>https://oziroe.github.io/2017/07/04/噩梦记/</id>
+    <published>2017-07-04T04:18:21.000Z</published>
+    <updated>2017-07-04T04:26:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个夜晚开始得比较晚。记住了最后一个梦，估计已是日上三竿时的作品了吧。</p>
+<p>梦里我去了你住的小区，楼宇布局和我学校宿舍楼类似。我要在自己单方面约定的时间等着你。我穿过初中母校，经过一个从来没有开过的门，碰到一些学校教职工。我进了你的小区，却不记得约定的楼在哪里。我沿着横平竖直的楼房，焦急地奔跑着，呼喊着，害怕会错过你。</p>
+<p>看样子，一时半会，你是不会离开我的了。</p>
+<p>你说要点亮自己，我又何尝不是。希望那一天早点到来。我足够明亮，以至于任何的你都不会使我面临与现在的困境类似的情况的那一天。</p>
+<hr>
+<p>以上为陷入《约会大作战》OVA而难过之后的疯言疯语。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这个夜晚开始得比较晚。记住了最后一个梦，估计已是日上三竿时的作品了吧。&lt;/p&gt;
+&lt;p&gt;梦里我去了你住的小区，楼宇布局和我学校宿舍楼类似。我要在自己单方面约定的时间等着你。我穿过初中母校，经过一个从来没有开过的门，碰到一些学校教职工。我进了你的小区，却不记得约定的楼在哪里。我
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://oziroe.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="做梦" scheme="https://oziroe.github.io/tags/%E5%81%9A%E6%A2%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>二梦记</title>
     <link href="https://oziroe.github.io/2017/06/27/%E4%BA%8C%E6%A2%A6%E8%AE%B0/"/>
     <id>https://oziroe.github.io/2017/06/27/二梦记/</id>
     <published>2017-06-27T03:47:59.000Z</published>
-    <updated>2017-06-27T04:02:19.000Z</updated>
+    <updated>2017-07-04T04:18:52.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/images/4b-step1.png" alt="4b早期作品"></p>
 <a id="more"></a>
@@ -52,6 +113,8 @@
     
     
       <category term="随笔" scheme="https://oziroe.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="做梦" scheme="https://oziroe.github.io/tags/%E5%81%9A%E6%A2%A6/"/>
     
   </entry>
   
@@ -527,11 +590,11 @@
     </summary>
     
     
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
       <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
     
       <category term="C++" scheme="https://oziroe.github.io/tags/C/"/>
-    
-      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
     
       <category term="STL" scheme="https://oziroe.github.io/tags/STL/"/>
     
@@ -579,9 +642,9 @@
     </summary>
     
     
-      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
-    
       <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
+    
+      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
     
       <category term="数据结构" scheme="https://oziroe.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     

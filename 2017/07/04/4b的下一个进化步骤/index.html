@@ -3,14 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>归档 | This is oziroe.</title>
+  <title>4b的下一个进化步骤 | This is oziroe.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="This is oziroe.">
-<meta property="og:url" content="https://oziroe.github.io/archives/page/2/index.html">
+  <meta name="description" content="好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。">
+<meta name="keywords" content="4b,Ruby,Swift,pbrt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4b的下一个进化步骤">
+<meta property="og:url" content="https://oziroe.github.io/2017/07/04/4b的下一个进化步骤/index.html">
 <meta property="og:site_name" content="This is oziroe.">
+<meta property="og:description" content="好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。">
+<meta property="og:updated_time" content="2017-07-04T04:40:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="This is oziroe.">
+<meta name="twitter:title" content="4b的下一个进化步骤">
+<meta name="twitter:description" content="好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。">
   
     <link rel="alternate" href="/atom.xml" title="This is oziroe." type="application/atom+xml">
   
@@ -64,105 +69,59 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/07/对于顺序任务可控执行的合理封装/" class="archive-article-date">
-  <time datetime="2017-06-07T06:07:16.000Z" itemprop="datePublished">6月7日</time>
+        <section id="main"><article id="post-4b的下一个进化步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/04/4b的下一个进化步骤/" class="article-date">
+  <time datetime="2017-07-04T04:27:08.000Z" itemprop="datePublished">2017-07-04</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/对于顺序任务可控执行的合理封装/">对于顺序任务可控执行的合理封装</a>
+    <h1 class="article-title" itemprop="name">
+      4b的下一个进化步骤
     </h1>
   
 
-    </header>
-  </div>
-</article>
-
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/05/简单的可暂停单工作线程模型/" class="archive-article-date">
-  <time datetime="2017-06-05T11:50:05.000Z" itemprop="datePublished">6月5日</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/简单的可暂停单工作线程模型/">简单的可暂停单工作线程模型</a>
-    </h1>
-  
+        <p>好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。</p>
+<a id="more"></a>
+<p>贯彻<a href="/2017/06/19/有关于数据结构角色和组织方式的一点思考/" title="上一篇相关文章">上一篇相关文章</a>的思想，我重新写了4b……其实不是。我发现贝塞尔曲线本身的复杂度超过了我的接受能力，所以将其改为直线，先写出了一个叫做4l的版本……其实也不是。我还没有写完用四种颜色填充图片的算法，所以大概只能叫rl(random colors background with lines)。之所以没有写完是因为自己实现的朴素算法在处理一些边界条件和浮点数相关的时候没有足够的经验，导致程序的崩溃率在95%左右。</p>
+<p>于是，我采用了一套解决方案。首先，改变技术栈。C++本身的复杂度依然是个问题。原本计划换成Swift，奈何它对于非App开发过于不友好。于是在首先由于个人原因排除了Python的前提下，选了Ruby。这货我一直都有一定的好感，其语言特性有一丝LISP的味道。而且其C API比Python简洁得多，之后遇到一定会有的用C拓展的阶段也会是个优势。</p>
+<p>然后，我需要专业知识的辅助。是的，就是这样一个小程序，一个用来生成符合我口味的桌面壁纸的小程序，现在要害得我啃英文大部头了。学了这些知识只为了写这一个程序性价比可不高。于是我决定看<a href="http://download.csdn.net/download/neoxiong/9839916" target="_blank" rel="external">PBRT</a>，之后真正将其中的技术尽量都转化到这个小程序里面。</p>
+<p>路漫漫其修远兮。各位保重，我可能又要好久不见了。</p>
 
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/04/基于C-11-STL的邻接表图实现/" class="archive-article-date">
-  <time datetime="2017-06-04T13:47:14.000Z" itemprop="datePublished">6月4日</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/04/基于C-11-STL的邻接表图实现/">基于C++11/STL的邻接表图实现</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/02/简单数组结构及操作/" class="archive-article-date">
-  <time datetime="2017-06-02T15:04:00.000Z" itemprop="datePublished">6月2日</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/07/04/4b的下一个进化步骤/" data-id="cj4p389yd0000j0onh05bonhu" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/简单数组结构及操作/">简单数组结构posarr及操作</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pbrt/">pbrt</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/04/噩梦记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">噩梦记</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         
