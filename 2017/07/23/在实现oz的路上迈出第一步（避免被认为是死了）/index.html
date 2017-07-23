@@ -3,14 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Tag: 随笔 | This is oziroe.</title>
+  <title>在实现oz的路上迈出第一步（避免被认为是死了） | This is oziroe.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="This is oziroe.">
-<meta property="og:url" content="https://oziroe.github.io/tags/随笔/index.html">
+  <meta name="description" content="既是指项目，也是指人。 刚刚将所有的提交合并到主分支上，现在代码仓库的语言条变得五颜六色了起来。唔，标准的程序员浪漫么。">
+<meta name="keywords" content="oz,lex,yacc,Makefile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在实现oz的路上迈出第一步（避免被认为是死了）">
+<meta property="og:url" content="https://oziroe.github.io/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/index.html">
 <meta property="og:site_name" content="This is oziroe.">
+<meta property="og:description" content="既是指项目，也是指人。 刚刚将所有的提交合并到主分支上，现在代码仓库的语言条变得五颜六色了起来。唔，标准的程序员浪漫么。">
+<meta property="og:updated_time" content="2017-07-23T15:15:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="This is oziroe.">
+<meta name="twitter:title" content="在实现oz的路上迈出第一步（避免被认为是死了）">
+<meta name="twitter:description" content="既是指项目，也是指人。 刚刚将所有的提交合并到主分支上，现在代码仓库的语言条变得五颜六色了起来。唔，标准的程序员浪漫么。">
   
     <link rel="alternate" href="/atom.xml" title="This is oziroe." type="application/atom+xml">
   
@@ -64,101 +69,71 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/09/夜行记/" class="archive-article-date">
-  <time datetime="2017-07-08T23:49:34.000Z" itemprop="datePublished">7月9日</time>
+        <section id="main"><article id="post-在实现oz的路上迈出第一步（避免被认为是死了）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/" class="article-date">
+  <time datetime="2017-07-23T15:04:24.000Z" itemprop="datePublished">2017-07-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/09/夜行记/">夜行记</a>
+    <h1 class="article-title" itemprop="name">
+      在实现oz的路上迈出第一步（避免被认为是死了）
     </h1>
   
 
-    </header>
-  </div>
-</article>
-
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/04/噩梦记/" class="archive-article-date">
-  <time datetime="2017-07-04T04:18:21.000Z" itemprop="datePublished">7月4日</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/04/噩梦记/">噩梦记</a>
-    </h1>
-  
+        <p>既是指项目，也是指人。</p>
+<p>刚刚将所有的提交合并到主分支上，现在<a href="https://github.com/oziroe/oz" target="_blank" rel="external">代码仓库</a>的语言条变得五颜六色了起来。唔，标准的程序员浪漫么。</p>
+<a id="more"></a>
+<p>首先是有关Makefile的奇技淫巧。Makefile的隐式规则处理lex足够了，但是它不会自动生成yacc的头文件<code>y.tab.h</code>，导致了lex规则中不能用token之类的宏和变量。因此要做三件事：</p>
+<ol>
+<li>手动添加yacc的参数<code>-d</code>，确保生成头文件</li>
+<li>确保yacc的规则在lex的规则之前被处理生成</li>
+<li>由于修改了Makefile规则，原来的自动删除中间文件现在没有了，要手动删除</li>
+</ol>
+<p>最后的成果大概是这样：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="section">all: main</span></div><div class="line">	cp main oz</div><div class="line"></div><div class="line"><span class="section">main: lexical.o grammer.o</span></div><div class="line"><span class="section">lexical.o: grammer.c</span></div><div class="line"><span class="section">grammer.c: YFLAGS += -d</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean</span></div><div class="line"><span class="section">clean:</span></div><div class="line">	rm *.o *.tab.h grammer.c main</div></pre></td></tr></table></figure>
+<p>其中复制的一步是为了避免重复链接oz（同时还要用隐式规则），又希望上一级的Makefile看到的名字是oz而不是main。没有刻意保持目录的整洁，很多东西留到了clean里面才删，等项目大一些了要考虑重写一下。</p>
+<hr>
+<p>lex的规则有点奇怪。写成如下这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot; &quot;&#123;OPERATOR_CHARSET1&#125;+/(&quot;(&quot;|[0-9]) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure>
+<p>而不是后面括号当中部分的分配率展开形式可以避免报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lexical.l:66: warning, trailing context made variable due to preceding &apos;|&apos; action</div><div class="line">lexical.l:66: warning, dangerous trailing context</div></pre></td></tr></table></figure>
+<p>（也许）也能避免一些解析错误。原因未知。</p>
 
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/27/二梦记/" class="archive-article-date">
-  <time datetime="2017-06-27T03:47:59.000Z" itemprop="datePublished">6月27日</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/27/二梦记/">二梦记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/12/逃学归家而无病呻吟/" class="archive-article-date">
-  <time datetime="2017-06-11T16:51:21.000Z" itemprop="datePublished">6月12日</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/" data-id="cj5guw9vv000464onw02gp2kk" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/12/逃学归家而无病呻吟/">逃学归家而无病呻吟</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Makefile/">Makefile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lex/">lex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oz/">oz</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yacc/">yacc</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/20/关于一个新的语言oz的构想/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于一个新的语言oz的构想</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-
-  
-  
-    </div></section>
-  
-
 
 </section>
         
