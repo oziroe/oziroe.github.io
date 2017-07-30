@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-07-23T15:15:42.000Z</updated>
+  <updated>2017-07-30T05:36:12.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -16,11 +16,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>突然回忆的过往之事</title>
+    <link href="https://oziroe.github.io/2017/07/30/%E7%AA%81%E7%84%B6%E5%9B%9E%E5%BF%86%E7%9A%84%E8%BF%87%E5%BE%80%E4%B9%8B%E4%BA%8B/"/>
+    <id>https://oziroe.github.io/2017/07/30/突然回忆的过往之事/</id>
+    <published>2017-07-30T05:16:07.000Z</published>
+    <updated>2017-07-30T05:36:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>重新安装了系统，出于某种……我自己也难以理解的洁癖不想在macOS底下装中文输入法，然而要我在Windows底下配置博客环境还不如直接杀了我，于是这篇文章变成了这样……</p>
+<p><img src="/images/记事本博客截图.PNG" alt="这篇博客现在的样子……"></p>
+<p>在此再复述一遍早就挖好的坑：</p>
+<blockquote>
+<p>一个可以全平台使用（尤其是Windows）的博客客户端</p>
+</blockquote>
+<p>再不勤奋一点我自甘日狗。</p>
+<a id="more"></a>
+<p>一个人的寝室，虽然不想承认，但还是有些落寞。整个人也不自觉的更勤奋了一些以转移注意力。上午区区两个小时，就写出了一个2048游戏的核心逻辑，不知道两年前死活写不出的我若是知晓会怎么想。唉……傻逼，谁让你不会用函数作抽象。不过这个javascript代码看着就是很奇怪……它仿佛用尽自己的力气在呐喊：“老子是C！把老子的拓展名改回来！”也许十年前的js我的风格会是主流吧，现在只能叫泥石流了。</p>
+<p>等这个项目完工了会上传GitHub。（谁在挖坑？）</p>
+<hr>
+<p>多年前的一个暑假，我沉迷玩滑板，先是两脚一个板的蛇板，后来是换了一脚一个的，父亲就玩起了旧板陪我。夕阳之下，一大群小孩子里混杂着一个大人笨拙着，现在想起来要很大的勇气吧。</p>
+<p>有一天我和一群孩子在比试谁能滑上人行道，我玩的双板显然不可能，于是我借了一个孩子的单板，临到人行道时一个交叉后踢腿，人跑到一边，但是板子会飞上人行道。</p>
+<p>这大概是一种非常暴力的动作，借我板子的小孩沉着脸让我把板还给他，我不听，又试了一次。这次围过来的人有点多。过了好大一会我才明白异常所在：我把那孩子的板玩成了两截。</p>
+<p>我慌了，意料之外的情况不知如何处理。父亲走过去商量了一下，回来说，他把旧板赔给那个孩子了。</p>
+<p>“那你滑什么？”话没问出口就被我吞了回去。这不是那时的我会做的事。</p>
+<p>我突然感到一阵心痛。那时的我，性格顽劣。这是我第一次因为意识到自己的过错所付出代价的沉重而心痛。</p>
+<p>不过，要想看到我彻底明白什么才是责任，还要等上好多年。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;重新安装了系统，出于某种……我自己也难以理解的洁癖不想在macOS底下装中文输入法，然而要我在Windows底下配置博客环境还不如直接杀了我，于是这篇文章变成了这样……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/记事本博客截图.PNG&quot; alt=&quot;这篇博客现在的样子……&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在此再复述一遍早就挖好的坑：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个可以全平台使用（尤其是Windows）的博客客户端&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;再不勤奋一点我自甘日狗。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://oziroe.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="水" scheme="https://oziroe.github.io/tags/%E6%B0%B4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在实现oz的路上迈出第一步（避免被认为是死了）</title>
     <link href="https://oziroe.github.io/2017/07/23/%E5%9C%A8%E5%AE%9E%E7%8E%B0oz%E7%9A%84%E8%B7%AF%E4%B8%8A%E8%BF%88%E5%87%BA%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%88%E9%81%BF%E5%85%8D%E8%A2%AB%E8%AE%A4%E4%B8%BA%E6%98%AF%E6%AD%BB%E4%BA%86%EF%BC%89/"/>
     <id>https://oziroe.github.io/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/</id>
     <published>2017-07-23T15:04:24.000Z</published>
-    <updated>2017-07-23T15:15:42.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>既是指项目，也是指人。</p>
 <p>刚刚将所有的提交合并到主分支上，现在<a href="https://github.com/oziroe/oz" target="_blank" rel="external">代码仓库</a>的语言条变得五颜六色了起来。唔，标准的程序员浪漫么。</p>
@@ -65,7 +111,7 @@
     <link href="https://oziroe.github.io/2017/07/20/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%AF%AD%E8%A8%80oz%E7%9A%84%E6%9E%84%E6%83%B3/"/>
     <id>https://oziroe.github.io/2017/07/20/关于一个新的语言oz的构想/</id>
     <published>2017-07-20T15:49:23.000Z</published>
-    <updated>2017-07-20T16:01:04.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>新的<a href="https://github.com/oziroe/oz" target="_blank" rel="external">代码仓库</a>已经建立，欢迎捧个人场。实话说，Github的语言条还是让我惊讶了一下。</p>
 <p><img src="/images/还有这种操作.png" alt="还有这种操作"></p>
@@ -108,7 +154,7 @@
     <link href="https://oziroe.github.io/2017/07/09/%E5%A4%9C%E8%A1%8C%E8%AE%B0/"/>
     <id>https://oziroe.github.io/2017/07/09/夜行记/</id>
     <published>2017-07-08T23:49:34.000Z</published>
-    <updated>2017-07-09T00:27:09.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>可不是梦游哦。</p>
 <p>PS：西安地铁三号线的声音真是令人惊艳。</p>
@@ -173,7 +219,7 @@
     <link href="https://oziroe.github.io/2017/07/04/4b%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%BF%9B%E5%8C%96%E6%AD%A5%E9%AA%A4/"/>
     <id>https://oziroe.github.io/2017/07/04/4b的下一个进化步骤/</id>
     <published>2017-07-04T04:27:08.000Z</published>
-    <updated>2017-07-04T04:40:44.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>好久不见。虽然看了看时间，上一篇文章不过过去了一周有余，但还是有种自己已经把写博客的习惯丢掉了的恐惧。</p>
 <a id="more"></a>
@@ -205,7 +251,7 @@
     <link href="https://oziroe.github.io/2017/07/04/%E5%99%A9%E6%A2%A6%E8%AE%B0/"/>
     <id>https://oziroe.github.io/2017/07/04/噩梦记/</id>
     <published>2017-07-04T04:18:21.000Z</published>
-    <updated>2017-07-04T04:26:39.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>这个夜晚开始得比较晚。记住了最后一个梦，估计已是日上三竿时的作品了吧。</p>
 <p>梦里我去了你住的小区，楼宇布局和我学校宿舍楼类似。我要在自己单方面约定的时间等着你。我穿过初中母校，经过一个从来没有开过的门，碰到一些学校教职工。我进了你的小区，却不记得约定的楼在哪里。我沿着横平竖直的楼房，焦急地奔跑着，呼喊着，害怕会错过你。</p>
@@ -234,7 +280,7 @@
     <link href="https://oziroe.github.io/2017/06/27/%E4%BA%8C%E6%A2%A6%E8%AE%B0/"/>
     <id>https://oziroe.github.io/2017/06/27/二梦记/</id>
     <published>2017-06-27T03:47:59.000Z</published>
-    <updated>2017-07-04T04:18:52.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/images/4b-step1.png" alt="4b早期作品"></p>
 <a id="more"></a>
@@ -276,7 +322,7 @@
     <link href="https://oziroe.github.io/2017/06/19/%E6%9C%89%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%A7%92%E8%89%B2%E5%92%8C%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/"/>
     <id>https://oziroe.github.io/2017/06/19/有关于数据结构角色和组织方式的一点思考/</id>
     <published>2017-06-19T02:51:37.000Z</published>
-    <updated>2017-06-19T02:58:08.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>也许数据结构不应该过于追求通用性。</p>
 <p>我大概是被STL影响了吧。一整套的基本数据结构，以及搭配的基本算法，还可以随便排列组合，多么美好。</p>
@@ -299,9 +345,9 @@
     
       <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
     
-      <category term="破事水" scheme="https://oziroe.github.io/tags/%E7%A0%B4%E4%BA%8B%E6%B0%B4/"/>
-    
       <category term="数据结构" scheme="https://oziroe.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="破事水" scheme="https://oziroe.github.io/tags/%E7%A0%B4%E4%BA%8B%E6%B0%B4/"/>
     
   </entry>
   
@@ -310,7 +356,7 @@
     <link href="https://oziroe.github.io/2017/06/16/%E7%9C%BC%E5%85%89%E4%B8%8E%E8%80%B3%E5%85%89%EF%BC%88%E6%B0%B4%EF%BC%89/"/>
     <id>https://oziroe.github.io/2017/06/16/眼光与耳光（水）/</id>
     <published>2017-06-16T12:18:06.000Z</published>
-    <updated>2017-06-16T12:19:32.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>为什么眼光和耳光，是两个意思完全不一样的词呢？</p>
 <p>如果我想形容一个人鉴赏音乐的“眼光”，该用什么词呢？</p>
@@ -334,7 +380,7 @@
     <link href="https://oziroe.github.io/2017/06/14/%E6%9F%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%EF%BC%88%E6%B0%B4%EF%BC%89/"/>
     <id>https://oziroe.github.io/2017/06/14/某数据结构实验报告（水）/</id>
     <published>2017-06-14T15:01:53.000Z</published>
-    <updated>2017-06-14T15:29:12.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>居然还有<a href="http://www.zamzar.com/convert/pdf-to-html/" target="_blank" rel="external">这种操作</a>，真是厉害。</p>
 <a id="more"></a>
@@ -359,7 +405,7 @@
     <link href="https://oziroe.github.io/2017/06/12/%E9%80%83%E5%AD%A6%E5%BD%92%E5%AE%B6%E8%80%8C%E6%97%A0%E7%97%85%E5%91%BB%E5%90%9F/"/>
     <id>https://oziroe.github.io/2017/06/12/逃学归家而无病呻吟/</id>
     <published>2017-06-11T16:51:21.000Z</published>
-    <updated>2017-06-11T17:17:19.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>原本应该是“归家有感”的标题被硬生生改成这样。唉，没办法，我就是受不了参差不齐的文件名。</p>
 <p>说是“逃学”，其实也是有请假单的。只是此时此刻室友们大概还在备战下周的五门考试，而我却刚刚写了个热水澡，坐在这里畅想明天与女朋友相见，实在有点莫名的心虚。</p>
@@ -395,7 +441,7 @@
     <link href="https://oziroe.github.io/2017/06/10/%E6%9C%89%E5%85%B3%E4%BA%8Epip%E3%80%81lxml%E5%92%8CMinecraft%E7%9A%84%E5%9D%91%E5%90%84%E4%B8%80%E5%88%99/"/>
     <id>https://oziroe.github.io/2017/06/10/有关于pip、lxml和Minecraft的坑各一则/</id>
     <published>2017-06-10T06:58:52.000Z</published>
-    <updated>2017-06-10T07:10:46.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>流年不利。</p>
 <a id="more"></a>
@@ -446,7 +492,7 @@
     <link href="https://oziroe.github.io/2017/06/09/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E9%83%A8%E5%88%86%E7%9A%84%E5%BD%92%E7%BA%B3%E6%95%B4%E7%90%86/"/>
     <id>https://oziroe.github.io/2017/06/09/离散数学代数系统部分的归纳整理/</id>
     <published>2017-06-09T09:18:11.000Z</published>
-    <updated>2017-06-09T12:50:58.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/images/代数系统.png" alt="代数系统简图"></p>
 <p>每一次画示意图，我都发誓这是我最后一次画示意图。神呐救救我的布局吧。</p>
@@ -506,7 +552,7 @@
     <link href="https://oziroe.github.io/2017/06/08/%E5%8D%9A%E5%AE%A2%E6%94%B9%E7%89%88%EF%BC%8C%E6%A0%BC%E5%BC%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E8%AE%B0/"/>
     <id>https://oziroe.github.io/2017/06/08/博客改版，格式微调实记/</id>
     <published>2017-06-08T14:51:27.000Z</published>
-    <updated>2017-06-08T15:16:23.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>作为一个静态博客框架，Hexo已经足够优秀。只是或多或少有一点Bug存在，不知为何。这篇文章记录了一些微调和修改，以使整个网站看上去更加正常。</p>
 <a id="more"></a>
@@ -515,7 +561,7 @@
 <p><img src="/images/封面图.jpg" alt="新的封面图"></p>
 <hr>
 <p>更换了字体为Open Sans。这个字体是从Typora的配置里面拿出来的，用Typora的时候实在是眼馋得不得了。将Typora主题文件夹里的<code>github</code>文件夹复制到博客的<code>themes/landscape/source/css/fonts</code>文件夹下，然后添加文件<code>themes/landscape/source/css/github-font.css</code>，内容如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">include</span>-<span class="keyword">when</span>-<span class="keyword">export</span> url(http://fonts.googleapis.com/css?family=Open+Sans:<span class="number">400</span>italic,<span class="number">700</span>italic,<span class="number">700</span>,<span class="number">400</span>&amp;subset=latin,latin-ext);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* css forked from https://github.com/GitbookIO/gitbook</div><div class="line">* www.gitbook.com</div><div class="line">* Apache License</div><div class="line">* https://github.com/GitbookIO/gitbook/blob/master/LICENSE</div><div class="line">**/</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Regular'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">include</span>-<span class="keyword">when</span>-<span class="keyword">export</span> url(http://fonts.googleapis.com/css?family=Open+Sans:<span class="number">400</span>italic,<span class="number">700</span>italic,<span class="number">700</span>,<span class="number">400</span>&amp;subset=latin,latin-ext);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">* css forked from https://github.com/GitbookIO/gitbook</span></div><div class="line"><span class="comment">* www.gitbook.com</span></div><div class="line"><span class="comment">* Apache License</span></div><div class="line"><span class="comment">* https://github.com/GitbookIO/gitbook/blob/master/LICENSE</span></div><div class="line"><span class="comment">**/</span></div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Regular'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: normal;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/400i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: normal;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">   <span class="attribute">font-family</span>: <span class="string">'Open Sans'</span>;</div><div class="line">   <span class="attribute">font-style</span>: italic;</div><div class="line">   <span class="attribute">font-weight</span>: bold;</div><div class="line">   <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">'Open Sans Bold Italic'</span>),<span class="built_in">url</span>(<span class="string">'./fonts/github/700i.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这一段是从Typora的<code>github.css</code>文件中复制出来的，看起来Typora是从Gitbook复制的。对原作者表示感谢。文件路径稍有更改。</p>
 <p>在同目录下的<code>style.styl</code>中添加一行：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import <span class="string">"github-font.css"</span></div></pre></td></tr></table></figure>
@@ -559,13 +605,13 @@
     <link href="https://oziroe.github.io/2017/06/07/%E5%AF%B9%E4%BA%8E%E9%A1%BA%E5%BA%8F%E4%BB%BB%E5%8A%A1%E5%8F%AF%E6%8E%A7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%90%88%E7%90%86%E5%B0%81%E8%A3%85/"/>
     <id>https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/</id>
     <published>2017-06-07T06:07:16.000Z</published>
-    <updated>2017-06-07T07:48:53.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>对于<a href="https://github.com/oziroe/Bitabase" target="_blank" rel="external">Bitabase</a>这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：<code>Bitabase</code>部分承担真正的爬取工作部分，<code>web</code>（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Windows底下开发的项目。</p>
 <p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
 <a id="more"></a>
 <p>根据<a href="/2017/06/05/简单的可暂停单工作线程模型/" title="上一篇文章中">上一篇文章中</a>所描述的，<code>interface</code>为我提供了一个简单的单工作线程，其实还有一个用来提起网络请求的接口，长成这个样子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line">                text: bool = True, **kwargs) -&gt; (bool, dict or str or bytes):</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line"><span class="function"><span class="params">                text: bool = True, **kwargs)</span> -&gt; (bool, dict or str or bytes):</span></div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
 <p>嗯，看来高亮不能正确处理换行，编辑器也不能正确处理Tab，真是一个充满恶意的世界呀。</p>
 <p>有了以上两种东西以后，问题就变成了如何把它们组装起来。经过考虑我决定把“请求”作为一个任务和产品。这个概念过于抽象，所以我用类比的方式给接口命名，以及写这篇博客。因此，下面的提示非常重要：</p>
 <p><strong>注意：本文作者默认读者对于<a href="http://ow.blizzard.cn/home" target="_blank" rel="external">《守望先锋》</a>有基本的了解（世界观、英雄等），为了不影响观看本文的体验，请不满足此假设的读者点击前面的链接提高自身姿势水平，谢谢配合。</strong></p>
@@ -625,7 +671,7 @@
     <link href="https://oziroe.github.io/2017/06/05/%E7%AE%80%E5%8D%95%E7%9A%84%E5%8F%AF%E6%9A%82%E5%81%9C%E5%8D%95%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/"/>
     <id>https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/</id>
     <published>2017-06-05T11:50:05.000Z</published>
-    <updated>2017-06-05T13:16:14.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。</p>
 <p><img src="/images/我好菜啊.jpg" alt="我好菜啊"></p>
@@ -701,7 +747,7 @@
     <link href="https://oziroe.github.io/2017/06/04/%E5%9F%BA%E4%BA%8EC-11-STL%E7%9A%84%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%9B%BE%E5%AE%9E%E7%8E%B0/"/>
     <id>https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/</id>
     <published>2017-06-04T13:47:14.000Z</published>
-    <updated>2017-06-04T14:41:06.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>我也不记得这是我第几次口口声声说着“我再也不用C++了”然后又用了C++。用了会浪费大量时间，使程序陷入无限复杂度；不用会浪费大量代码量，使程序陷入无限繁琐。一个小循环过后就会进入大循环的下一个步骤：开始转向Python等快速迭代的脚本语言，直到忍受不了其灵活而转回所谓“一步一个脚印”的主导思想当中来。唉，如果上天再给我一次机会，我坚决不学C以外的其他语言。最多加上Python。好吧还是得有Java或者C#。算了当我什么都没说。</p>
 <p>这次实现的图是在昨天写完C版本的图之后，实在没忍住的成果。不知道为什么，在自己写的数据结构之上工作总有一种上不了台面的感觉，没有用STL来的舒坦。强烈克制住删代码的冲动以后，写了一套完全平行的图（项目代码膨胀的一个活生生的例子），并且放弃了“底层用STL上层暴露为C接口”的想法，毕竟用了C++而不用C++11，或者用了C++11而不用匿名函数，那么和咸鱼也没有什么区别了。</p>
@@ -762,7 +808,7 @@
     <link href="https://oziroe.github.io/2017/06/02/%E7%AE%80%E5%8D%95%E6%95%B0%E7%BB%84%E7%BB%93%E6%9E%84%E5%8F%8A%E6%93%8D%E4%BD%9C/"/>
     <id>https://oziroe.github.io/2017/06/02/简单数组结构及操作/</id>
     <published>2017-06-02T15:04:00.000Z</published>
-    <updated>2017-06-03T06:51:03.000Z</updated>
+    <updated>2017-07-30T05:05:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>其实这是一种“假”的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *posarr_p;</div></pre></td></tr></table></figure>
@@ -781,7 +827,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">posarr#10[0, 1, 2, 3, 4, 5, 6, 7, ...]</div></pre></td></tr></table></figure>
 <p>只显示前八个元素，这样就算放在一行log当中也不会太尴尬。</p>
 <p>最后，一个用来遍历数组的工具宏替换函数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    for (int index = 0, item = array[index]; item &gt;= 0; \</div><div class="line">         index++, item = array[index])</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>, item = <span class="built_in">array</span>[index]; item &gt;= <span class="number">0</span>; \</div><div class="line">         index++, item = <span class="built_in">array</span>[index])</div></pre></td></tr></table></figure>
 <p>就是这些。下一步会添加刚刚想到的删除函数，并且把这个数据结构用来作邻接表组成的图数据结构的基石。</p>
 ]]></content>
     

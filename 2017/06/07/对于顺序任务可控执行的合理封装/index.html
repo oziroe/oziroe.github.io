@@ -12,8 +12,9 @@
 <meta property="og:url" content="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/index.html">
 <meta property="og:site_name" content="This is oziroe.">
 <meta property="og:description" content="对于Bitabase这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：Bitabase部分承担真正的爬取工作部分，web（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Win">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://oziroe.github.io/images/牛逼坏了叉会腰.jpg">
-<meta property="og:updated_time" content="2017-06-07T07:48:53.000Z">
+<meta property="og:updated_time" content="2017-07-30T05:05:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对于顺序任务可控执行的合理封装">
 <meta name="twitter:description" content="对于Bitabase这个项目，我并没有计划把它做得很复杂。首先分为两个大模块：Bitabase部分承担真正的爬取工作部分，web（还没有想好名字）会渲染一个简单的本地网站用于把数据展示出来，以及提供操作接口以控制爬虫的工作。虽然项目迁移到了macOS/PyCharm的开发环境，但是依然保留着Visual Studio的结构，因为……懒。开玩笑啦，要不是VS的补全实在太慢，也许到现在这还是一个Win">
@@ -97,7 +98,7 @@
 <p><code>Bitabase</code>底下没有更加细分的模块。<code>interface.py</code>是面向标准库和第三方库的一个封装，理论上其上方的代码就不用再直接引用任何其他库了，全部需求可以由它本身满足；<code>base.py</code>是代码真正的基础，将<code>interface.py</code>里提供的原始的、面向过程的接口改造成为需求量身定制的形状，所有应用层的代码（比如<code>web</code>模块）都不应该越过<code>base</code>而直接引用<code>interface</code>。今天要讲的就是<code>base</code>模块当中最开始的一部分。</p>
 <a id="more"></a>
 <p>根据<a href="/2017/06/05/简单的可暂停单工作线程模型/" title="上一篇文章中">上一篇文章中</a>所描述的，<code>interface</code>为我提供了一个简单的单工作线程，其实还有一个用来提起网络请求的接口，长成这个样子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line">                text: bool = True, **kwargs) -&gt; (bool, dict or str or bytes):</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request</span><span class="params">(url: str, session: requests.Session = None, json: bool = False,</span></span></div><div class="line"><span class="function"><span class="params">                text: bool = True, **kwargs)</span> -&gt; (bool, dict or str or bytes):</span></div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
 <p>嗯，看来高亮不能正确处理换行，编辑器也不能正确处理Tab，真是一个充满恶意的世界呀。</p>
 <p>有了以上两种东西以后，问题就变成了如何把它们组装起来。经过考虑我决定把“请求”作为一个任务和产品。这个概念过于抽象，所以我用类比的方式给接口命名，以及写这篇博客。因此，下面的提示非常重要：</p>
 <p><strong>注意：本文作者默认读者对于<a href="http://ow.blizzard.cn/home" target="_blank" rel="external">《守望先锋》</a>有基本的了解（世界观、英雄等），为了不影响观看本文的体验，请不满足此假设的读者点击前面的链接提高自身姿势水平，谢谢配合。</strong></p>
@@ -138,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/" data-id="cj5guw9wi000f64onjwtpaoe1" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/07/对于顺序任务可控执行的合理封装/" data-id="cj5qa4iy6000er2sn8fvkqqhd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitabase/">Bitabase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
@@ -177,7 +178,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 13.33px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 16.67px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lex/" style="font-size: 10px;">lex</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oz/" style="font-size: 13.33px;">oz</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 13.33px;">做梦</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/破事水/" style="font-size: 13.33px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/造轮子/" style="font-size: 10px;">造轮子</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+      <a href="/tags/4b/" style="font-size: 17.5px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 12.5px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lex/" style="font-size: 10px;">lex</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oz/" style="font-size: 12.5px;">oz</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 12.5px;">做梦</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/水/" style="font-size: 10px;">水</a> <a href="/tags/破事水/" style="font-size: 12.5px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/造轮子/" style="font-size: 10px;">造轮子</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
     </div>
   </div>
 
@@ -186,7 +187,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -197,6 +198,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/30/突然回忆的过往之事/">突然回忆的过往之事</a>
+          </li>
         
           <li>
             <a href="/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/">在实现oz的路上迈出第一步（避免被认为是死了）</a>
@@ -212,10 +217,6 @@
         
           <li>
             <a href="/2017/07/04/4b的下一个进化步骤/">4b的下一个进化步骤</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/04/噩梦记/">噩梦记</a>
           </li>
         
       </ul>

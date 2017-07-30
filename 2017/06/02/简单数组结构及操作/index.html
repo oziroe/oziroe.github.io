@@ -12,8 +12,9 @@
 <meta property="og:url" content="https://oziroe.github.io/2017/06/02/简单数组结构及操作/index.html">
 <meta property="og:site_name" content="This is oziroe.">
 <meta property="og:description" content="其实这是一种“假”的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组 1typedef int *posarr_p; 一切操作，都围绕着这个如假包换的数组展开。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://oziroe.github.io/images/还有这种操作.png">
-<meta property="og:updated_time" content="2017-06-03T06:51:03.000Z">
+<meta property="og:updated_time" content="2017-07-30T05:05:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单数组结构posarr及操作">
 <meta name="twitter:description" content="其实这是一种“假”的数据结构，没有什么新的结构，甚至平行数组都没有，它就是一个简单的……数组 1typedef int *posarr_p; 一切操作，都围绕着这个如假包换的数组展开。">
@@ -110,13 +111,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">posarr#10[0, 1, 2, 3, 4, 5, 6, 7, ...]</div></pre></td></tr></table></figure>
 <p>只显示前八个元素，这样就算放在一行log当中也不会太尴尬。</p>
 <p>最后，一个用来遍历数组的工具宏替换函数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    for (int index = 0, item = array[index]; item &gt;= 0; \</div><div class="line">         index++, item = array[index])</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POSARR_ITERAT(array, item, index) \</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>, item = <span class="built_in">array</span>[index]; item &gt;= <span class="number">0</span>; \</div><div class="line">         index++, item = <span class="built_in">array</span>[index])</div></pre></td></tr></table></figure>
 <p>就是这些。下一步会添加刚刚想到的删除函数，并且把这个数据结构用来作邻接表组成的图数据结构的基石。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj5guw9wr000o64onqwm9z608" class="article-share-link">Share</a>
+      <a data-url="https://oziroe.github.io/2017/06/02/简单数组结构及操作/" data-id="cj5qa4iyk000nr2sn5k3dg70r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/4b/">4b</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
@@ -150,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/4b/" style="font-size: 20px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 13.33px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 16.67px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lex/" style="font-size: 10px;">lex</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oz/" style="font-size: 13.33px;">oz</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 13.33px;">做梦</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/破事水/" style="font-size: 13.33px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/造轮子/" style="font-size: 10px;">造轮子</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+      <a href="/tags/4b/" style="font-size: 17.5px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 12.5px;">Bitabase</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 15px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lex/" style="font-size: 10px;">lex</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oz/" style="font-size: 12.5px;">oz</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 12.5px;">做梦</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/水/" style="font-size: 10px;">水</a> <a href="/tags/破事水/" style="font-size: 12.5px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/造轮子/" style="font-size: 10px;">造轮子</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
     </div>
   </div>
 
@@ -159,7 +160,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -170,6 +171,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/30/突然回忆的过往之事/">突然回忆的过往之事</a>
+          </li>
         
           <li>
             <a href="/2017/07/23/在实现oz的路上迈出第一步（避免被认为是死了）/">在实现oz的路上迈出第一步（避免被认为是死了）</a>
@@ -185,10 +190,6 @@
         
           <li>
             <a href="/2017/07/04/4b的下一个进化步骤/">4b的下一个进化步骤</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/04/噩梦记/">噩梦记</a>
           </li>
         
       </ul>
