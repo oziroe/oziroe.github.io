@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-08-07T03:43:03.000Z</updated>
+  <updated>2017-08-07T10:20:43.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有关于Blue Fat的构想和计划</title>
+    <link href="https://oziroe.github.io/2017/08/07/%E6%9C%89%E5%85%B3%E4%BA%8EBlue-Fat%E7%9A%84%E6%9E%84%E6%83%B3%E5%92%8C%E8%AE%A1%E5%88%92/"/>
+    <id>https://oziroe.github.io/2017/08/07/有关于Blue-Fat的构想和计划/</id>
+    <published>2017-08-07T10:18:06.000Z</published>
+    <updated>2017-08-07T10:20:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>似曾相识的标题……一句题外话，Try2048的游戏部分基本算是完全确定了，刚刚好800行代码，看得我很舒服。还是原来那个<a href="https://github.com/oziroe/try-2048" target="_blank" rel="external">代码仓库</a>。不过过去种种删库行为让我现在都不太敢放这种链接了，因为现在回去看上上个月的博客，好多链接都没办法点了……说真的，以后可能都只能放个人主页链接了……</p>
+<a id="more"></a>
+<p>还记得之前立的Flag吗？要写一个Hexo客户端之类的。几乎就在那几天，我没有忍住在Windows上装了Dev-C++……不不，我现在也不觉得这是个好东西了，只是当年我就是在Windows7下用它入门的C/C++，所以单纯地念念旧罢了。不过下了编译器总是要写点程序的。于是我顺理成章地开了一个Win32图形程序的工程（怎么跟mc开存档似的……），写点什么呢？不是说要写博客客户端吗，那就试试吧。</p>
+<p>经过几天时间，我得出以下几个结论。</p>
+<p>第一，这玩意居然真的是可以写出来的。Hexo的部分和Git的部分分别把原生的环境复制一份到build底下，然后用Win32调命令执行就可以的；一个可选项，内建浏览器预览文章，要么可以走COM调系统的IE，要么还有一个神器<a href="https://bitbucket.org/chromiumembedded/cef" target="_blank" rel="external">CEF</a>可以用（话说我为什么作死不直接用Electron……），万事具备啊。插一嘴，正是因为我发现它好像要集成好多东西的样子，因此命名为Blue Fat，为什么？因为我不知道多拉A梦的官方英文名啊！</p>
+<p>第二，Win32 API是个好东西。短短一周时间里，我已经先后对两件事物开始喜欢上了（前一个是Javascript），真是奇妙。如果我没有理解错的话，Win32这一套借口应该是Windows窗体最底层的基础，诸如WinForm、MFC乃至后面的WPF、UWP都是在其之上的再封装（当然同时封装了.NET一大堆就是啦），因此它就像是POSIX一样的存在。不过这个东西看着可比POSIX讨喜多了，厚重但是不陈旧，这是它给我的第一印象。虽然这段时间都在踩其中大大小小的坑（主要是我太笨了吧……），不过却还是给人一种奇怪的愉悦，不知Win32程序员是不是都有这种体会。说起来第一次接触Win32也是一件很源远流长的事情啊……真是越活越小了。</p>
+<p>第三，Dev-C++这东西真的不能用了。别的都不说了，我只想要一个功能：我得<code>foo.cpp</code>依赖<code>bar.h</code>，给我一个按钮让我在<code>Makefile.win</code>里面可以添加这个依赖。如是我开始搜寻“小巧而好用的Win32开发环境”，嗯……我真想问问当时的自己，到底认为除了VS以外还能搜出什么？作为电脑性能不够所以装回Windows7和Office2010的人来说，我下意识地拒绝VS2010以后的版本……或者说任何看着“不圆”的东西。喜出望外，2010版的VS还是各个语言分开的，于是VC++ 2010 Express就成了比我想象中还要符合我预期的东西，Nice。</p>
+<p>现在的我，除了namespace强制缩进以外，再无怨言。</p>
+<p>希望拿记事本写博客的日子，少之又少。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;似曾相识的标题……一句题外话，Try2048的游戏部分基本算是完全确定了，刚刚好800行代码，看得我很舒服。还是原来那个&lt;a href=&quot;https://github.com/oziroe/try-2048&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;代码仓库&lt;/a&gt;。不过过去种种删库行为让我现在都不太敢放这种链接了，因为现在回去看上上个月的博客，好多链接都没办法点了……说真的，以后可能都只能放个人主页链接了……&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Try2048" scheme="https://oziroe.github.io/tags/Try2048/"/>
+    
+      <category term="Blue Fat" scheme="https://oziroe.github.io/tags/Blue-Fat/"/>
+    
+      <category term="Win32" scheme="https://oziroe.github.io/tags/Win32/"/>
+    
+      <category term="Dev-C++" scheme="https://oziroe.github.io/tags/Dev-C/"/>
+    
+      <category term="Visual Studio" scheme="https://oziroe.github.io/tags/Visual-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>急需一个新的对梦境的理解</title>
@@ -81,7 +118,7 @@
     <link href="https://oziroe.github.io/2017/08/01/%E5%A4%9A%E5%B9%B4%E5%90%8E%E7%BB%88%E4%BA%8E%EF%BC%88%E5%BC%80%E5%A7%8B%EF%BC%89%E5%AE%8C%E6%88%90%E7%9A%84%E5%A4%99%E6%84%BF%E2%80%94%E2%80%942048/"/>
     <id>https://oziroe.github.io/2017/08/01/多年后终于（开始）完成的夙愿——2048/</id>
     <published>2017-07-31T21:35:59.000Z</published>
-    <updated>2017-07-31T23:55:43.000Z</updated>
+    <updated>2017-08-07T10:19:21.000Z</updated>
     
     <content type="html"><![CDATA[<p>嗯，我想写一个2048已经好久好久了……</p>
 <blockquote>
@@ -179,7 +216,7 @@
     
       <category term="2048" scheme="https://oziroe.github.io/tags/2048/"/>
     
-      <category term="try-2048" scheme="https://oziroe.github.io/tags/try-2048/"/>
+      <category term="Try2048" scheme="https://oziroe.github.io/tags/Try2048/"/>
     
       <category term="函数式编程" scheme="https://oziroe.github.io/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
     
@@ -909,67 +946,6 @@
       <category term="Bitabase" scheme="https://oziroe.github.io/tags/Bitabase/"/>
     
       <category term="线程" scheme="https://oziroe.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于C++11/STL的邻接表图实现</title>
-    <link href="https://oziroe.github.io/2017/06/04/%E5%9F%BA%E4%BA%8EC-11-STL%E7%9A%84%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%9B%BE%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://oziroe.github.io/2017/06/04/基于C-11-STL的邻接表图实现/</id>
-    <published>2017-06-04T13:47:14.000Z</published>
-    <updated>2017-07-30T05:05:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>我也不记得这是我第几次口口声声说着“我再也不用C++了”然后又用了C++。用了会浪费大量时间，使程序陷入无限复杂度；不用会浪费大量代码量，使程序陷入无限繁琐。一个小循环过后就会进入大循环的下一个步骤：开始转向Python等快速迭代的脚本语言，直到忍受不了其灵活而转回所谓“一步一个脚印”的主导思想当中来。唉，如果上天再给我一次机会，我坚决不学C以外的其他语言。最多加上Python。好吧还是得有Java或者C#。算了当我什么都没说。</p>
-<p>这次实现的图是在昨天写完C版本的图之后，实在没忍住的成果。不知道为什么，在自己写的数据结构之上工作总有一种上不了台面的感觉，没有用STL来的舒坦。强烈克制住删代码的冲动以后，写了一套完全平行的图（项目代码膨胀的一个活生生的例子），并且放弃了“底层用STL上层暴露为C接口”的想法，毕竟用了C++而不用C++11，或者用了C++11而不用匿名函数，那么和咸鱼也没有什么区别了。</p>
-<a id="more"></a>
-<p>这回依然是一个邻接表的图，由于C++可以用模板，所以就不用再以索引的方式间接地访问顶点和边的数据了，这个图也就真的一个数据结构，而非仅仅是一堆锁链的集合了。首先定义一个辅助结构用来把边和有关信息绑定在一起：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vertex, <span class="keyword">typename</span> Edge&gt; <span class="class"><span class="keyword">struct</span> <span class="title">EdgeBox</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Vertex source, destination;</div><div class="line">    Edge edge;</div><div class="line"></div><div class="line">    EdgeBox(<span class="keyword">const</span> Vertex &amp;s, <span class="keyword">const</span> Vertex &amp;d, <span class="keyword">const</span> Edge &amp;e) &#123;</div><div class="line">        source = s;</div><div class="line">        destination = d;</div><div class="line">        edge = e;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>在边当中包含终点信息的好处自不必说，包含起点的好处是……和终点对称。对就是这样。</p>
-<p>”所以说<code>Edge</code>就只是一个权重信息的过度抽象了？“确实有这种嫌疑，不过我的实际用例还真的用得到更多的信息：在一幅贝塞尔曲线作为边、曲线的交点作为顶点的图当中，一条边不但有起点终点，还有其对应的曲线的解析式。</p>
-<p>写C版本的图时有一个夙愿，就是删除一个顶点的时候把已此顶点作为终点的边也一并删除，然而由于下层数据结构（就是那个没什么用的<code>posarr</code>）的限制而难以实现。这次为了达成愿望，加入一个平行的字典专为此功能：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>&lt;Vertex, <span class="built_in">vector</span>&lt;EdgeType&gt;&gt; _graph;</div><div class="line"><span class="built_in">map</span>&lt;Vertex, <span class="built_in">vector</span>&lt;EdgeType&gt;&gt; _vend;</div></pre></td></tr></table></figure>
-<p>在<code>_graph</code>当中储存一般的邻接表结构，而<code>_vend[vert]</code>则储存以<code>vert</code>作为终点的边都有哪些。这时候边当中的起点字段就有用处了。</p>
-<p>几个加减顶点和边的接口无需多言，遍历顶点的边的接口有了C++11的匿名函数和<code>for (auto some : thing)</code>语法糖以后也变得流畅很多，唯一一个瑕疵是删除边时的遍历：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteEdge</span><span class="params">(<span class="keyword">const</span> Vertex &amp;start, <span class="keyword">const</span> Edge &amp;edge)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> box = _graph[start].cbegin(); box != _graph[start].cend(); box++) &#123;</div><div class="line">        <span class="keyword">if</span> (box-&gt;edge == edge) &#123;</div><div class="line">            _graph[start].erase(box);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里的for循环没有办法用新语法，因为循环体内部的<code>erase</code>要访问迭代器本身。我想大概有更友善的方法吧。</p>
-<hr>
-<p>由于深度优先搜索不需要队列的加持（虽然有了STL也不是很麻烦了），所以先实现的出来。<strong>注意：请务必读到下一条水平线再复制粘贴！</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> PreviousMap = <span class="built_in">map</span>&lt;Vertex, <span class="keyword">const</span> Vertex *&gt;;</div><div class="line"><span class="keyword">using</span> SearchVisitor = function&lt;<span class="keyword">int</span> (<span class="keyword">const</span> Vertex &amp;v, <span class="keyword">const</span> Edge *through,</div><div class="line">                                    <span class="keyword">const</span> PreviousMap prev)&gt;;</div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">int</span> _dfs(<span class="keyword">const</span> Vertex &amp;current, <span class="keyword">const</span> SearchVisitor &amp;visitor, <span class="keyword">const</span> Edge *through,</div><div class="line">         PreviousMap &amp;prev) <span class="keyword">const</span> &#123;</div><div class="line">    <span class="keyword">int</span> status = visitor(current, through, prev);</div><div class="line">    <span class="keyword">if</span> (status != <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> status;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> edge : _graph.at(current)) &#123;</div><div class="line">        <span class="keyword">if</span> (prev[edge.destination] != <span class="literal">nullptr</span>) &#123;</div><div class="line">            prev[edge.destination] = &amp;current;</div><div class="line">            <span class="keyword">int</span> s = _dfs(*prev[edge.destination], visitor, &amp;edge.edge, prev);</div><div class="line">            <span class="keyword">if</span> (s != <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> s;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfsVisit</span><span class="params">(<span class="keyword">const</span> Vertex &amp;start, <span class="keyword">const</span> SearchVisitor &amp;&amp;visitor)</span> <span class="keyword">const</span> </span>&#123;</div><div class="line">    PreviousMap prev;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> pair : _graph)</div><div class="line">        prev[pair.first] = <span class="literal">nullptr</span>;</div><div class="line">    <span class="keyword">return</span> _dfs(start, visitor, <span class="literal">nullptr</span>, prev);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里<code>SerachVisitor</code>借口的设计非常反人类，需要在匿名函数声明处写一大长串的参数类型，不过除了特别简单的遍历方法应该也不会已匿名函数的方法写出，所以尚可接受。其中<code>through</code>为遍历中是走哪一条边到达当前顶点的，如果是对出发点调用则该参数为<code>nullptr</code>。正因此才把这个参数改为指针，从而破坏了全引用借口的统一性。这么说来其实指针在C++当中起到了其他语言<code>Nullable</code>或者<code>?</code> <code>!</code>类型的功能，这么用真的没有问题吧……</p>
-<p><code>prev</code>储存每一个顶点在遍历顺序中的前一个顶点，回调函数还可以通过返回非0值得方式提前结束遍历，这对于寻找某种最优路的场景应该是比较友善的。考虑到C++11中的匿名函数可以捕获上层作用域中的变量，所以就没有必要传一个额外的payload了。</p>
-<p>为什么对外接口中接受的函数类型是个右值引用，而到了对内的接口就变成了左值引用呢？别问我，我只知道不这样写都会报错……</p>
-<p><img src="/images/我能怎么办，我也很绝望啊.jpeg" alt="我能怎么办，我也很绝望啊"></p>
-<p>上面的代码里有一个bug，聪明的你发现了吗？我忘记把起始点对应的<code>prev</code>设置好了……原来写博客还有debug的功能，真是太厉害了。</p>
-<hr>
-<p>这大概是我与C++的合作中体验最好的一次了，没有踩到语法的坑、标准库的坑以及编译器的坑。唯一美中不足地就是IDE有点撑不住了。（另外显然，博客的高亮插件也阵亡了。）我亲爱的CLion的代码补全从瞬间出现之间降至秒级，有时会产生一种在用编辑器的错觉。另外分享两则疯掉的CLion：</p>
-<p><img src="/images/CLion疯了-1.png" alt="CLion精神病病例#1"></p>
-<p><img src="/images/CLion疯了-2.png" alt="CLion精神病病例#2"></p>
-<p>后来呢？我想把图的实现代码命名为<code>adjgph.hpp</code>(<strong>adj</strong>ancency <strong>g</strong>ra<strong>ph</strong>)，把测试代码文件命名为<code>adjgph_test.cpp</code>，然而我写完以后发现CLion非常智能地帮助我保持了名字的统一性：我把它俩任意一个的<code>_test</code>去掉，另一个的后缀也会自动消失；反之亦然。</p>
-<p><img src="/images/妈的智障.png" alt="妈的智障"></p>
-<p>于是我只好动用了外部工具实现了我的目的，然后……bug就好了。是时候再放一次这张图了：</p>
-<p><img src="/images/还有这种操作.png" alt="就是有这种操作"></p>
-<p>这种莫名其妙的操作在JetBrains家的IDE上还出现过一次，以后有机会再写出来吧。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我也不记得这是我第几次口口声声说着“我再也不用C++了”然后又用了C++。用了会浪费大量时间，使程序陷入无限复杂度；不用会浪费大量代码量，使程序陷入无限繁琐。一个小循环过后就会进入大循环的下一个步骤：开始转向Python等快速迭代的脚本语言，直到忍受不了其灵活而转回所谓“一步一个脚印”的主导思想当中来。唉，如果上天再给我一次机会，我坚决不学C以外的其他语言。最多加上Python。好吧还是得有Java或者C#。算了当我什么都没说。&lt;/p&gt;
-&lt;p&gt;这次实现的图是在昨天写完C版本的图之后，实在没忍住的成果。不知道为什么，在自己写的数据结构之上工作总有一种上不了台面的感觉，没有用STL来的舒坦。强烈克制住删代码的冲动以后，写了一套完全平行的图（项目代码膨胀的一个活生生的例子），并且放弃了“底层用STL上层暴露为C接口”的想法，毕竟用了C++而不用C++11，或者用了C++11而不用匿名函数，那么和咸鱼也没有什么区别了。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
-    
-      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
-    
-      <category term="C++" scheme="https://oziroe.github.io/tags/C/"/>
-    
-      <category term="STL" scheme="https://oziroe.github.io/tags/STL/"/>
-    
-      <category term="图" scheme="https://oziroe.github.io/tags/%E5%9B%BE/"/>
-    
-      <category term="C++11" scheme="https://oziroe.github.io/tags/C-11/"/>
     
   </entry>
   
