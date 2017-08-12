@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>使用Ruby与Lex/Yacc一起构建编译器的第一步 | This is oziroe.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。">
+<meta name="keywords" content="Ruby,Lex,Yacc,Daze,C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Ruby与Lex&#x2F;Yacc一起构建编译器的第一步">
+<meta property="og:url" content="https://oziroe.github.io/2017/08/12/使用Ruby与Lex-Yacc一起构建编译器的第一步/index.html">
+<meta property="og:site_name" content="This is oziroe.">
+<meta property="og:description" content="首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-12T14:44:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Ruby与Lex&#x2F;Yacc一起构建编译器的第一步">
+<meta name="twitter:description" content="首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。">
+  
+    <link rel="alternate" href="/atom.xml" title="This is oziroe." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  <meta name="baidu-site-verification" content="mocJIK9AF5" /><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">This is oziroe.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Please call me cowsay.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oziroe.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用Ruby与Lex-Yacc一起构建编译器的第一步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/12/使用Ruby与Lex-Yacc一起构建编译器的第一步/" class="article-date">
+  <time datetime="2017-08-12T14:01:06.000Z" itemprop="datePublished">2017-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Ruby与Lex/Yacc一起构建编译器的第一步
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。</p>
+<a id="more"></a>
+<p>目前的语言/编译器的进展可以概括如下。源代码（凑合看吧）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">use &quot;./Standard&quot; &gt;&gt; int</div><div class="line"></div><div class="line">Main = () -&gt; int</div><div class="line">    return int(42)</div></pre></td></tr></table></figure>
+<p>编译（或者说解析）结果（经过手动调整格式）</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"type"</span>=&gt;<span class="string">"def_list"</span>,</div><div class="line">  <span class="string">"def"</span>=&gt;&#123;</div><div class="line">    <span class="string">"type"</span>=&gt;<span class="string">"use_def"</span>,</div><div class="line">    <span class="string">"path"</span>=&gt;<span class="string">"./Standard"</span>,</div><div class="line">    <span class="string">"used"</span>=&gt;<span class="string">"int"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"next"</span>=&gt;&#123;</div><div class="line">    <span class="string">"type"</span>=&gt;<span class="string">"def_list"</span>,</div><div class="line">    <span class="string">"def"</span>=&gt;&#123;</div><div class="line">      <span class="string">"type"</span>=&gt;<span class="string">"func_def"</span>,</div><div class="line">      <span class="string">"head"</span>=&gt;<span class="string">"Main"</span>,</div><div class="line">      <span class="string">"body"</span>=&gt;&#123;</div><div class="line">        <span class="string">"type"</span>=&gt;<span class="string">"block"</span>,</div><div class="line">        <span class="string">"inner"</span>=&gt;&#123;</div><div class="line">          <span class="string">"type"</span>=&gt;<span class="string">"stat_list"</span>,</div><div class="line">          <span class="string">"stat"</span>=&gt;&#123;</div><div class="line">            <span class="string">"type"</span>=&gt;<span class="string">"return_stat"</span>,</div><div class="line">            <span class="string">"expr"</span>=&gt;&#123;</div><div class="line">              <span class="string">"type"</span>=&gt;<span class="string">"expr3"</span>,</div><div class="line">              <span class="string">"func"</span>=&gt;<span class="string">"int"</span>,</div><div class="line">              <span class="string">"expr"</span>=&gt;<span class="number">42</span></div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          <span class="string">"next"</span>=&gt;&#123;</div><div class="line">            <span class="string">"type"</span>=&gt;<span class="string">"stat_empty"</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"next"</span>=&gt;&#123;</div><div class="line">      <span class="string">"type"</span>=&gt;<span class="string">"def_empty"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之所以层次这么多是因为所有的列表都以双元素链表字典的方式存在。这样可以在一定程度上减轻编译器的实现难度（就是懒）。不过说真的，写到这里我开始有点不懂了。这么好的技术搭配，为什么从来没见到有人用过？从来？？显然，代码的世界还有许多的未知之地在等着我去冒险。</p>
+<p>目前项目的<code>Source</code>目录下有以下内容</p>
+<ul>
+<li><code>Main.rb</code>入口，命令行界面</li>
+<li><code>Compile.rb</code>主要且唯一的编译封装界面</li>
+<li><code>Parser</code>文件夹，下属各源码解析文件<ul>
+<li><code>Scanner.l</code>/<code>Parser.y</code>是Lex和Yacc的输入文件</li>
+<li><code>Bridge.h</code>/<code>Bridge.c</code>定义了上述两个文件中用到的Ruby方法，以及整个Parser暴露给Ruby项目的接口</li>
+<li><code>extconf.rb</code>用于生成Makefile，<code>build.sh</code>负责文件夹的整个构建过程。编译过后，<code>Parser</code>文件夹旁边会多出来一个<code>Parser.bundle</code>文件，在Ruby看来和一个普通的<code>Parser.rb</code>没什么区别。</li>
+</ul>
+</li>
+</ul>
+<p>这篇文章主要集中在讨论<code>Parser</code>文件夹下。我们知道在Yacc的输入文件当中，每一个终结符/非终结符都是有值的。通常来说这个值的类型是不统一的，但是有了Ruby就不一样了。Ruby良好的C API使得所有结果具有同一个类型<code>VALUE</code>，哪怕不像我这般几乎全用Hash也是一样。不仅如此，Ruby提供的接口会让你感觉你写的并不是C，只是语法稍微拙劣了一点的Ruby。下面的函数为一个非终结符创建起对应在AST上的节点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function">VALUE <span class="title">CreateNode</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *type, <span class="keyword">const</span> <span class="keyword">int</span> child_count, ...)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  VALUE node = rb_hash_new();</div><div class="line">  rb_hash_aset(node, rb_str_new_cstr(<span class="string">"type"</span>), rb_str_new_cstr(type));</div><div class="line"></div><div class="line">  va_list ap;</div><div class="line">  va_start(ap, child_count);</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; child_count; i++)</div><div class="line">  &#123;</div><div class="line">      <span class="keyword">const</span> <span class="keyword">char</span> *name = va_arg(ap, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">      VALUE child = va_arg(ap, VALUE);</div><div class="line">      rb_hash_aset(node, rb_str_new_cstr(name), child);</div><div class="line">  &#125;</div><div class="line">  va_end(ap);</div><div class="line">  <span class="keyword">return</span> node;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中<code>rb_hash_aset(hash, key, value)</code>对应着<code>hash[key] = value</code>，而<code>rb_str_new_cstr</code>则以C风格的字符串为参数，创建Ruby中类型为<code>String</code>的变量（在C中的类型当然是<code>VALUE</code>）。用着Ruby的C API，真的让我感觉哪怕我不是为了给Ruby写拓展，仅仅是在写一个纯C的项目，我都想把它当成是一个代码库来用。一个有类型检查的<code>void *</code>，还有内建的垃圾收集，以及大量的实用工具……除了速度太慢以外堪称完美。</p>
+<p>顺便一说，上面的C代码成功地把Atom的代码高亮玩坏掉了……真是太脆弱了。</p>
+<p>有了统一类型<code>VALUE</code>，那么把<code>YYSTYPE</code>定为<code>VALUE</code>也就成了顺理成章的事情。然而也就是因为这个我发现了Yacc（Bison）的一个bug，哪怕到Google去搜也没法找到类似的情况。难道说我是第一个用这种姿势使用Yacc的人？震惊。</p>
+<p>这个bug就是，用<code>-d</code>参数指示Yacc生成<code>y.tab.h</code>时，与<code>YYSTYPE</code>以及<code>yylval</code>相关的代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> ! defined YYSTYPE &amp;&amp; ! defined YYSTYPE_IS_DECLARED</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> YYSTYPE;</div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> yystype YYSTYPE <span class="comment">/* obsolescent; will be withdrawn */</span></span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> YYSTYPE_IS_DECLARED 1</span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> YYSTYPE_IS_TRIVIAL 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> YYSTYPE yylval;</div></pre></td></tr></table></figure>
+<p>虽然我在<code>Parser.y</code>/<code>y.tab.c</code>里的确定义了<code>YYSTYPE</code>，但是<code>y.tab.h</code>不可能知道这件事，因此不管我在Yacc里把它的类型定义成啥，在Lex里看到的<code>yylval</code>都是一个<code>int</code>类型的变量。由于某些兼容性问题，在链接的时候这个全局变量并不会引起报错，但我知道在Lex里面给<code>yylval</code>赋值时赋的值一定是先强制类型转化为<code>int</code>再赋的值，因为<code>VALUE</code>实际上就是<code>unsigned long</code>，在Ruby里相当于句柄一样的存在，而被转换为<code>int</code>以后，哪怕是简单的输出到屏幕都会引起Ruby虚拟机段错误崩溃。</p>
+<p>哦对，只要简单的调用<code>rb_p</code>就可以把任何<code>VALUE</code>类型的变量输出到屏幕，这大概是我见过的最简单的print调试工作流了。</p>
+<p>总之，在没有SO问题+没有文档相关+没有GH issue的情况下，我只好在Lex的头部首先把<code>YYSTYPE</code>也定义为<code>VALUE</code>在引用<code>y.tab.h</code>文件。这也许是最好的解决办法了吧。</p>
+<hr>
+<p>作为Daze语言的第一个用例，这个程序还是相当简单的，我只要解决<code>int</code>的问题就可以让它运行了。是的，<code>int</code>作为基本类型，却不是这个语言的一部分。这种允许用户自定义任何类型，无论基本还是复合的疯狂举动主要是为了回答自己的一个疑问：“为什么语言的类型要分为内建的和自定义的？”这样，我就不用回答这个问题了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oziroe.github.io/2017/08/12/使用Ruby与Lex-Yacc一起构建编译器的第一步/" data-id="cj69deaxa0000jfsnwtquei68" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daze/">Daze</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lex/">Lex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Yacc/">Yacc</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/07/有关于Blue-Fat的构想和计划/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">有关于Blue Fat的构想和计划</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2048/" style="font-size: 10px;">2048</a> <a href="/tags/4b/" style="font-size: 17.5px;">4b</a> <a href="/tags/Bitabase/" style="font-size: 12.5px;">Bitabase</a> <a href="/tags/Blue-Fat/" style="font-size: 10px;">Blue Fat</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/C/" style="font-size: 17.5px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/Cacoa/" style="font-size: 10px;">Cacoa</a> <a href="/tags/DLL/" style="font-size: 10px;">DLL</a> <a href="/tags/Daze/" style="font-size: 10px;">Daze</a> <a href="/tags/Dev-C/" style="font-size: 10px;">Dev-C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Lex/" style="font-size: 10px;">Lex</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Ruby/" style="font-size: 12.5px;">Ruby</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Try2048/" style="font-size: 12.5px;">Try2048</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Win32/" style="font-size: 10px;">Win32</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/Yacc/" style="font-size: 10px;">Yacc</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/lex/" style="font-size: 10px;">lex</a> <a href="/tags/lxml/" style="font-size: 10px;">lxml</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/oz/" style="font-size: 12.5px;">oz</a> <a href="/tags/oziroe-github-io/" style="font-size: 10px;">oziroe.github.io</a> <a href="/tags/pbrt/" style="font-size: 10px;">pbrt</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/代数系统/" style="font-size: 10px;">代数系统</a> <a href="/tags/做梦/" style="font-size: 12.5px;">做梦</a> <a href="/tags/函数式编程/" style="font-size: 10px;">函数式编程</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/破事水/" style="font-size: 17.5px;">破事水</a> <a href="/tags/离散数学/" style="font-size: 10px;">离散数学</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/造轮子/" style="font-size: 10px;">造轮子</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年8月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/12/使用Ruby与Lex-Yacc一起构建编译器的第一步/">使用Ruby与Lex/Yacc一起构建编译器的第一步</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/07/有关于Blue-Fat的构想和计划/">有关于Blue Fat的构想和计划</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/07/急需一个新的对梦境的理解/">急需一个新的对梦境的理解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/04/狂想症中毒患者的生日篇章/">狂想症中毒患者的生日篇章</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/01/多年后终于（开始）完成的夙愿——2048/">多年后终于（开始）完成的夙愿——2048</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 oziroe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

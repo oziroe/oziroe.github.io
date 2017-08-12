@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oziroe.github.io/"/>
-  <updated>2017-08-07T10:20:43.000Z</updated>
+  <updated>2017-08-12T14:44:39.000Z</updated>
   <id>https://oziroe.github.io/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Ruby与Lex/Yacc一起构建编译器的第一步</title>
+    <link href="https://oziroe.github.io/2017/08/12/%E4%BD%BF%E7%94%A8Ruby%E4%B8%8ELex-Yacc%E4%B8%80%E8%B5%B7%E6%9E%84%E5%BB%BA%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AD%A5/"/>
+    <id>https://oziroe.github.io/2017/08/12/使用Ruby与Lex-Yacc一起构建编译器的第一步/</id>
+    <published>2017-08-12T14:01:06.000Z</published>
+    <updated>2017-08-12T14:44:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。</p>
+<a id="more"></a>
+<p>目前的语言/编译器的进展可以概括如下。源代码（凑合看吧）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">use &quot;./Standard&quot; &gt;&gt; int</div><div class="line"></div><div class="line">Main = () -&gt; int</div><div class="line">    return int(42)</div></pre></td></tr></table></figure>
+<p>编译（或者说解析）结果（经过手动调整格式）</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"type"</span>=&gt;<span class="string">"def_list"</span>,</div><div class="line">  <span class="string">"def"</span>=&gt;&#123;</div><div class="line">    <span class="string">"type"</span>=&gt;<span class="string">"use_def"</span>,</div><div class="line">    <span class="string">"path"</span>=&gt;<span class="string">"./Standard"</span>,</div><div class="line">    <span class="string">"used"</span>=&gt;<span class="string">"int"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"next"</span>=&gt;&#123;</div><div class="line">    <span class="string">"type"</span>=&gt;<span class="string">"def_list"</span>,</div><div class="line">    <span class="string">"def"</span>=&gt;&#123;</div><div class="line">      <span class="string">"type"</span>=&gt;<span class="string">"func_def"</span>,</div><div class="line">      <span class="string">"head"</span>=&gt;<span class="string">"Main"</span>,</div><div class="line">      <span class="string">"body"</span>=&gt;&#123;</div><div class="line">        <span class="string">"type"</span>=&gt;<span class="string">"block"</span>,</div><div class="line">        <span class="string">"inner"</span>=&gt;&#123;</div><div class="line">          <span class="string">"type"</span>=&gt;<span class="string">"stat_list"</span>,</div><div class="line">          <span class="string">"stat"</span>=&gt;&#123;</div><div class="line">            <span class="string">"type"</span>=&gt;<span class="string">"return_stat"</span>,</div><div class="line">            <span class="string">"expr"</span>=&gt;&#123;</div><div class="line">              <span class="string">"type"</span>=&gt;<span class="string">"expr3"</span>,</div><div class="line">              <span class="string">"func"</span>=&gt;<span class="string">"int"</span>,</div><div class="line">              <span class="string">"expr"</span>=&gt;<span class="number">42</span></div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          <span class="string">"next"</span>=&gt;&#123;</div><div class="line">            <span class="string">"type"</span>=&gt;<span class="string">"stat_empty"</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"next"</span>=&gt;&#123;</div><div class="line">      <span class="string">"type"</span>=&gt;<span class="string">"def_empty"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之所以层次这么多是因为所有的列表都以双元素链表字典的方式存在。这样可以在一定程度上减轻编译器的实现难度（就是懒）。不过说真的，写到这里我开始有点不懂了。这么好的技术搭配，为什么从来没见到有人用过？从来？？显然，代码的世界还有许多的未知之地在等着我去冒险。</p>
+<p>目前项目的<code>Source</code>目录下有以下内容</p>
+<ul>
+<li><code>Main.rb</code>入口，命令行界面</li>
+<li><code>Compile.rb</code>主要且唯一的编译封装界面</li>
+<li><code>Parser</code>文件夹，下属各源码解析文件<ul>
+<li><code>Scanner.l</code>/<code>Parser.y</code>是Lex和Yacc的输入文件</li>
+<li><code>Bridge.h</code>/<code>Bridge.c</code>定义了上述两个文件中用到的Ruby方法，以及整个Parser暴露给Ruby项目的接口</li>
+<li><code>extconf.rb</code>用于生成Makefile，<code>build.sh</code>负责文件夹的整个构建过程。编译过后，<code>Parser</code>文件夹旁边会多出来一个<code>Parser.bundle</code>文件，在Ruby看来和一个普通的<code>Parser.rb</code>没什么区别。</li>
+</ul>
+</li>
+</ul>
+<p>这篇文章主要集中在讨论<code>Parser</code>文件夹下。我们知道在Yacc的输入文件当中，每一个终结符/非终结符都是有值的。通常来说这个值的类型是不统一的，但是有了Ruby就不一样了。Ruby良好的C API使得所有结果具有同一个类型<code>VALUE</code>，哪怕不像我这般几乎全用Hash也是一样。不仅如此，Ruby提供的接口会让你感觉你写的并不是C，只是语法稍微拙劣了一点的Ruby。下面的函数为一个非终结符创建起对应在AST上的节点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function">VALUE <span class="title">CreateNode</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *type, <span class="keyword">const</span> <span class="keyword">int</span> child_count, ...)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  VALUE node = rb_hash_new();</div><div class="line">  rb_hash_aset(node, rb_str_new_cstr(<span class="string">"type"</span>), rb_str_new_cstr(type));</div><div class="line"></div><div class="line">  va_list ap;</div><div class="line">  va_start(ap, child_count);</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; child_count; i++)</div><div class="line">  &#123;</div><div class="line">      <span class="keyword">const</span> <span class="keyword">char</span> *name = va_arg(ap, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">      VALUE child = va_arg(ap, VALUE);</div><div class="line">      rb_hash_aset(node, rb_str_new_cstr(name), child);</div><div class="line">  &#125;</div><div class="line">  va_end(ap);</div><div class="line">  <span class="keyword">return</span> node;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中<code>rb_hash_aset(hash, key, value)</code>对应着<code>hash[key] = value</code>，而<code>rb_str_new_cstr</code>则以C风格的字符串为参数，创建Ruby中类型为<code>String</code>的变量（在C中的类型当然是<code>VALUE</code>）。用着Ruby的C API，真的让我感觉哪怕我不是为了给Ruby写拓展，仅仅是在写一个纯C的项目，我都想把它当成是一个代码库来用。一个有类型检查的<code>void *</code>，还有内建的垃圾收集，以及大量的实用工具……除了速度太慢以外堪称完美。</p>
+<p>顺便一说，上面的C代码成功地把Atom的代码高亮玩坏掉了……真是太脆弱了。</p>
+<p>有了统一类型<code>VALUE</code>，那么把<code>YYSTYPE</code>定为<code>VALUE</code>也就成了顺理成章的事情。然而也就是因为这个我发现了Yacc（Bison）的一个bug，哪怕到Google去搜也没法找到类似的情况。难道说我是第一个用这种姿势使用Yacc的人？震惊。</p>
+<p>这个bug就是，用<code>-d</code>参数指示Yacc生成<code>y.tab.h</code>时，与<code>YYSTYPE</code>以及<code>yylval</code>相关的代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> ! defined YYSTYPE &amp;&amp; ! defined YYSTYPE_IS_DECLARED</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> YYSTYPE;</div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> yystype YYSTYPE <span class="comment">/* obsolescent; will be withdrawn */</span></span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> YYSTYPE_IS_DECLARED 1</span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> YYSTYPE_IS_TRIVIAL 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> YYSTYPE yylval;</div></pre></td></tr></table></figure>
+<p>虽然我在<code>Parser.y</code>/<code>y.tab.c</code>里的确定义了<code>YYSTYPE</code>，但是<code>y.tab.h</code>不可能知道这件事，因此不管我在Yacc里把它的类型定义成啥，在Lex里看到的<code>yylval</code>都是一个<code>int</code>类型的变量。由于某些兼容性问题，在链接的时候这个全局变量并不会引起报错，但我知道在Lex里面给<code>yylval</code>赋值时赋的值一定是先强制类型转化为<code>int</code>再赋的值，因为<code>VALUE</code>实际上就是<code>unsigned long</code>，在Ruby里相当于句柄一样的存在，而被转换为<code>int</code>以后，哪怕是简单的输出到屏幕都会引起Ruby虚拟机段错误崩溃。</p>
+<p>哦对，只要简单的调用<code>rb_p</code>就可以把任何<code>VALUE</code>类型的变量输出到屏幕，这大概是我见过的最简单的print调试工作流了。</p>
+<p>总之，在没有SO问题+没有文档相关+没有GH issue的情况下，我只好在Lex的头部首先把<code>YYSTYPE</code>也定义为<code>VALUE</code>在引用<code>y.tab.h</code>文件。这也许是最好的解决办法了吧。</p>
+<hr>
+<p>作为Daze语言的第一个用例，这个程序还是相当简单的，我只要解决<code>int</code>的问题就可以让它运行了。是的，<code>int</code>作为基本类型，却不是这个语言的一部分。这种允许用户自定义任何类型，无论基本还是复合的疯狂举动主要是为了回答自己的一个疑问：“为什么语言的类型要分为内建的和自定义的？”这样，我就不用回答这个问题了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先这个编译器的目标语言已经不叫oz了。对，只是不叫而已。毕竟不能让自己老是在做技术选型，从纯C（并搭配Ruby生成C代码……）到CoffeeScript再到Ruby。所以改个名字，警示自己一下。新的名字叫Daze（迷糊），嗯，起贱名好养活。现在GitHub上的代码仓库还是之前Ruby生成C的那一版，等手上这个完成一次merge的工作量后再上传。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Ruby" scheme="https://oziroe.github.io/tags/Ruby/"/>
+    
+      <category term="Lex" scheme="https://oziroe.github.io/tags/Lex/"/>
+    
+      <category term="Yacc" scheme="https://oziroe.github.io/tags/Yacc/"/>
+    
+      <category term="Daze" scheme="https://oziroe.github.io/tags/Daze/"/>
+    
+      <category term="C" scheme="https://oziroe.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>有关于Blue Fat的构想和计划</title>
@@ -443,9 +501,9 @@
     </summary>
     
     
-      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
-    
       <category term="Ruby" scheme="https://oziroe.github.io/tags/Ruby/"/>
+    
+      <category term="4b" scheme="https://oziroe.github.io/tags/4b/"/>
     
       <category term="Swift" scheme="https://oziroe.github.io/tags/Swift/"/>
     
@@ -670,13 +728,13 @@
     </summary>
     
     
-      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
-    
       <category term="Bug" scheme="https://oziroe.github.io/tags/Bug/"/>
     
       <category term="Minecraft" scheme="https://oziroe.github.io/tags/Minecraft/"/>
     
       <category term="pip" scheme="https://oziroe.github.io/tags/pip/"/>
+    
+      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
     
       <category term="Java" scheme="https://oziroe.github.io/tags/Java/"/>
     
@@ -870,82 +928,6 @@
       <category term="Bitabase" scheme="https://oziroe.github.io/tags/Bitabase/"/>
     
       <category term="设计模式" scheme="https://oziroe.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单的可暂停单工作线程模型</title>
-    <link href="https://oziroe.github.io/2017/06/05/%E7%AE%80%E5%8D%95%E7%9A%84%E5%8F%AF%E6%9A%82%E5%81%9C%E5%8D%95%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://oziroe.github.io/2017/06/05/简单的可暂停单工作线程模型/</id>
-    <published>2017-06-05T11:50:05.000Z</published>
-    <updated>2017-07-30T05:05:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。</p>
-<p><img src="/images/我好菜啊.jpg" alt="我好菜啊"></p>
-<p>这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能<strong>把部分成果拿出来</strong>。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了</p>
-<p>使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。</p>
-<a id="more"></a>
-<p>之前在写的时候通过查询大量<a href="https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python" target="_blank" rel="external">Stackoverflow的问题</a>以及<del>官方资料</del>（这玩意好像没有官方文档），成功地绕了一个弯：为单个的工作线程开了一个<code>multiprocessing.pool.ThreadPool</code>，据说这样的好处是可以方便的拿到返回值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    pool = ThreadPool(processes=<span class="number">1</span>)</div><div class="line">    async_result = pool.apply_async(real_worker)</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="string">'pool'</span>: pool,</div><div class="line">        <span class="string">'result'</span>: async_result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><em>注意：写的时候有点欠考虑，这样引用代码也许不太便于理解。可以参考<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这次修改的commit</a>，谢谢配合。</em></p>
-<p>然后在工作结束的时候结束进程并拿返回值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_for_worker_finish</span><span class="params">(worker)</span>:</span></div><div class="line">    <span class="comment"># ... here is some code tells worker there's no more work.</span></div><div class="line">    result = worker[<span class="string">'result'</span>].get()</div><div class="line">    <span class="comment"># ... some code update worker's state</span></div><div class="line">    <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
-<p>但是这个返回值并不是worker真正的产品（虽然这是<code>ThreadPool</code>的正确用法），因为这个返回值只有等全部的工作都做完了才能拿到，中途暂停（等会再说我是怎么实现暂停的）的时候是拿不到的。所以又开了两个<code>multiprocessing.Queue</code>，分别用来往worker里传任务和从worker往外传产品：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(worker_method)</span>:</span></div><div class="line">    tasks_queue = Queue()</div><div class="line">    products_queue = Queue()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            task = tasks_queue.get()</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            product = worker_method(task)</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            products_queue.put(product)</div><div class="line">    </div><div class="line">    <span class="comment"># ...</span></div><div class="line">    worker = &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'in_queue'</span>: tasks_queue,</div><div class="line">        <span class="string">'out_queue'</span>: products_queue,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>希望你还能把这个函数和上面那个合在一起。这样一来，真正传进来的<code>worker_method</code>所要实现的逻辑就很简单了：接收一个参数作为任务，返回产品。它还可以任性地抛异常——<code>real_worker</code>里的主循环当中省略的大部分代码就是为了处理这个的。这样一来随时增派新任务和获取已经完成部分的产品就变得非常容易了：只要传<code>worker</code>作为参数，取得对应的队列调用库的接口即可。具体可以参考官方文档。</p>
-<p>在<code>real_worker</code>的主循环中做的另一件事就是实现暂停功能，这是通过一对扭在一起的<code>multiprocessing.Event</code>实现的。具体如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    working = Event()</div><div class="line">    working.set()</div><div class="line">    pausing = Event()</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            pausing.set()</div><div class="line">            working.wait()</div><div class="line">            pausing.clear()</div><div class="line">            </div><div class="line">            <span class="comment"># ...</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'work_event'</span>: working,</div><div class="line">        <span class="string">'pause_event'</span>: pausing,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pause_worker</span><span class="params">(worker: dict)</span> -&gt; bool:</span></div><div class="line">	<span class="comment"># ...</span></div><div class="line">    worker[<span class="string">'work_event'</span>].clear()</div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="comment"># Wait for worker finishing current task.</span></div><div class="line">    worker[<span class="string">'pause_event'</span>].wait()</div><div class="line">    <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>
-<p>之所以还需要一个<code>pause_event</code>主要是因为一个BUG：最后一个任务可能会在worker被暂停以后被推进产品队列当中去。有了这个事件，<code>pause_worker</code>会一直等到最后一个产品被做完以后才返回，就不会出现莫名丢产品的情况了。</p>
-<p>这里省略的代码主要是用来确定当前worker状态的两个布尔值：<code>is_working</code>和<code>is_dead</code>。这两个值不仅可以用来作安全检查，还可以对外提供一个友善的接口。</p>
-<hr>
-<p>我跟你讲，以上是背景资料……整整写了1024个字……我也深表歉意。希望你能对接下来的正文依然充满了兴趣。</p>
-<p>今天原本是要在上述的基础接口之上建立一层面向对象的封装，并写一篇类似于《半藏与守望先锋不得不说的故事》之类的文章【误。但是在我点了单元测试之后（单元测试爽过吸大麻），有一个API接口的测试挂了。我当即大吃一惊，难道这么几天哔哩哔哩还改了接口？仔细一看更吃惊了，只见这是用来读取多P视频各分P名字的接口，然而前两P的名字顺序反了！这是什么情况？于是我来到B站上一看：</p>
-<p><del>截图</del></p>
-<p>是的你没有看错，就是大名鼎鼎的保加利亚巫妖王……前两P的名字居然交换了次序！这怎么可能呢？由于我在几个星期前确确实实跑了几十遍单元测试通过了，所以才如此的确定。反正我是百思不得其解并兴奋地发了一条动态：</p>
-<blockquote>
-<p>由于我的爬虫单元测试fail了，我可能是世界上第一个发现av170001前两P名字对调了的人。</p>
-</blockquote>
-<p>好吧我要讲的不是这个。我要说的是，我手贱点了一下“Concurrency Diagram”的按钮以后，看到了一幅恐怖的景象：</p>
-<p><img src="/images/并发测试图-1.png" alt="并发测试图#1"></p>
-<p>怎么有线程没有停止？经过反复测试，我发现当我把单线程的线程池里的线程数改成4的时候，没有停止的线程数变成了四倍：</p>
-<p><img src="/images/并发测试图-2.png" alt="并发测试图#2"></p>
-<p><img src="/images/我的心好痛.png" alt="我的心好痛"></p>
-<p>我明明在等待停止worker的函数里调用了<code>wait</code>，甚至还调用了<code>close</code>啊，为什么会这样呢？然后我又发现，所有没有停止的线程全都有一个同名且正常停止的线程。就像前两张图里画的那样。</p>
-<p><img src="/images/WTF.png" alt="What the f*ck"></p>
-<p>经过一圈Google无果之后（这个情况复杂到我不知道如何描述），我尝试着在单元测试里把各个节点的活跃线程数打印出来，然后发现，它每次运行的结果不一样……</p>
-<p><img src="/images/我的心好痛.png" alt="我的心好痛*2"></p>
-<p>这我又能怎么办呢？我只好决定把线程池改成一个单独的线程。还记得我为什么要用线程池吗？“可以方便地拿到返回值”。于是我尝试在worker里加一个字段用来存返回值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = <span class="keyword">None</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>这里<code>result</code>的结构是按照<code>ok, exception</code>的约定。然后我就发现，对<code>result</code>的修改好像不起作用……冥冥中的直觉让我把它改成了这样：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_worker</span><span class="params">(something)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    result = &#123;<span class="string">'value'</span>: <span class="keyword">None</span>&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">real_worker</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">nonlocal</span> result</div><div class="line">        <span class="comment"># ... decide to return</span></div><div class="line">        result[<span class="string">'value'</span>] = <span class="keyword">True</span>, <span class="keyword">None</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        <span class="string">'result'</span>: result,</div><div class="line">        <span class="comment"># ...</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>是的你没有猜错，好了。也许你会说“稍有常识……”，没错我就是没有常识。</p>
-<hr>
-<p>下一个坑还要深一点点。在我把线程池改成线程以后，图表变成了这样：</p>
-<p><img src="/images/并发测试图-3.png" alt="并发测试图#3"></p>
-<p>看起来好多了，只不过两条队列并没有正常地终止，每一次都要等到下一个测试用例之后才结束，最后一个测试甚至延伸了好久。经过一番操作我把它们替换成了<code>multiproccessing.Pipe</code>，也就是一对<code>Connection</code>。如果你有经验应该已经猜到了，我在worker结束以后取结果的代码抛了<code>EOFError</code>。原因是当worker线程结束的时候它所对应的<code>Connection</code>被回收掉了。于是我只好把worker改成了这样：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">worker = &#123;</div><div class="line">    <span class="string">'worker'</span>: worker,</div><div class="line">    <span class="string">'result'</span>: result,</div><div class="line">    <span class="string">'connect'</span>: host_conn,</div><div class="line">    <span class="string">'work_event'</span>: working,</div><div class="line">    <span class="string">'pause_event'</span>: pausing,</div><div class="line">    <span class="string">'is_working'</span>: <span class="keyword">True</span>,</div><div class="line">    <span class="string">'is_dead'</span>: <span class="keyword">False</span>,</div><div class="line">    <span class="comment"># this prevents auto-close</span></div><div class="line">    <span class="string">'_worker_connection'</span>: worker_conn,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>顺便加上了前面提到过的所有东西。于是，我的努力最终达到了效果：</p>
-<p><img src="/images/并发测试图-4.png" alt="并发测试图#4"></p>
-<p>没有多余线程啦！</p>
-<p><img src="/images/金正恩鼓掌.jpg" alt="鼓掌"></p>
-<p>最后，感谢每一个看完这篇不知所云文章的人。<a href="https://github.com/oziroe/Bitabase/commit/6e340bb5ad5a4b8a2d6b87210125ed1d8a2ddfb1" target="_blank" rel="external">这里</a>是这次commit的地址，你可以看一看完整版的代码。下一篇文章应该可以写我是如何构建上层抽象的了……大概吧。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;写完标题发现又是一篇《简单xxx》的文章。写个啥都是简单版，我好菜啊。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/我好菜啊.jpg&quot; alt=&quot;我好菜啊&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这篇文章涉及到的线程模型主要的使用场景是爬虫线程。作为一个高大上的爬虫，有一个问题一定要处理好的：突然断网怎么办。这也许就是一个每天晚上宿舍熄灯的人说不出的痛。我倒不是很在乎速度，使用阻塞式的网络请求也没关系；也不太在意CPU利用率，所以哪怕是主线程等待我也不着急。但问题就是我希望我的爬虫是“可暂停”的：不仅仅可以冻结当前状态，而且还能&lt;strong&gt;把部分成果拿出来&lt;/strong&gt;。因此，一个单工作线程的“线程池”模型横空出世。【虽然后来也不是线程池了&lt;/p&gt;
-&lt;p&gt;使用单线程工作的好处是省了很多锁，而且并没有损失拓展性：反正以后要是等不及了再在这个线程底下开线程池也没关系是不是。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://oziroe.github.io/tags/Python/"/>
-    
-      <category term="Bitabase" scheme="https://oziroe.github.io/tags/Bitabase/"/>
-    
-      <category term="线程" scheme="https://oziroe.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
